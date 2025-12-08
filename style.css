@@ -1,0 +1,200 @@
+/* تحديد الخطوط الأساسية والتصفير */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+:root {
+    --main-red: #ff0000;
+    --main-black: #111111;
+    --secondary-black: #222222;
+    --text-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--main-black);
+    color: var(--text-color);
+    text-align: center;
+    direction: rtl; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* الخلفية الضبابية (background.jpg) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background.jpg'); 
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px); 
+    z-index: -2;
+    transition: filter 0.5s ease;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: -1;
+}
+
+header, main, footer {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+}
+
+/* صورة المستخدم الدائرية والصغيرة */
+.profile-container {
+    margin: 30px auto 15px;
+}
+
+.profile-image {
+    width: 200px; 
+    height: 200px;
+    border-radius: 20%; 
+    object-fit: cover;
+    border: 1px solid var(--main-red); 
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 5px var(--text-color); 
+    transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+h1 {
+    color: var(--main-red);
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+.description {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+    background-color: var(--secondary-black);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid var(--main-red);
+}
+
+/* تخطيط شبكة البرامج (Grid 5x5) */
+
+.applications-grid-section h2 {
+    color: var(--text-color);
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--main-red);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.programs-grid {
+    display: grid;
+    /* يتكيف ليعرض ما يصل إلى 5 أعمدة أو أكثر على الشاشات الكبيرة */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    gap: 15px; 
+    max-width: 1200px;
+    margin: 0 auto 50px;
+    padding: 20px;
+    background-color: rgba(17, 17, 17, 0.5); 
+    border-radius: 10px;
+}
+
+/* تنسيق زر/عنصر البرنامج والحركة الخفيفة (Low Sharks Move) */
+.program-item {
+    text-decoration: none;
+    color: var(--text-color);
+    background-color: var(--main-black);
+    padding: 10px;
+    border: 1px solid var(--main-red);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--main-red);
+
+    /* الحركة الخفيفة على العنصر كله */
+    animation: low-pulse 4s infinite ease-in-out;
+}
+
+@keyframes low-pulse {
+    0% { transform: translateY(0); box-shadow: 0 0 5px var(--main-red), inset 0 0 5px var(--main-red); }
+    50% { transform: translateY(-2px); box-shadow: 0 0 8px var(--main-red), inset 0 0 8px var(--main-red); }
+    100% { transform: translateY(0); box-shadow: 0 0 5px var(--main-red), inset 0 0 5px var(--main-red); }
+}
+
+.program-item:hover {
+    background-color: var(--secondary-black);
+    transform: scale(1.03); 
+    border-color: var(--text-color);
+    box-shadow: 0 0 15px var(--main-red);
+}
+
+/* صورة البرنامج والحركة الإهتزازية (Paper Shake) */
+.program-item img {
+    width: 60px; 
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 8px;
+    border-radius: 5px; 
+    
+    /* تطبيق حركة اهتزاز الورقة */
+    animation: paper-shake 2s infinite ease-in-out; 
+    
+    transition: transform 0.2s ease; 
+}
+
+@keyframes paper-shake {
+    0%, 100% { 
+        transform: rotate(0deg) scale(1); 
+    }
+    25% { 
+        transform: rotate(0.5deg) scale(1.02); 
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); 
+    }
+    75% { 
+        transform: rotate(-0.5deg) scale(1.02); 
+    }
+}
+
+.program-item:hover img {
+    animation: none; /* إيقاف حركة paper-shake عند التمرير */
+    transform: scale(1.1); /* تكبير الصورة عند التمرير */
+}
+
+.program-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-color);
+    background-color: rgba(255, 0, 0, 0.1);
+    width: 100%;
+    padding: 5px 0;
+    border-radius: 0 0 8px 8px;
+}
+
+footer {
+    margin-top: auto;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top: 1px solid var(--main-red);
+}
