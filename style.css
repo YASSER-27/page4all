@@ -2,10 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 
 :root {
-    --main-red: #ff0000;
-    --main-black: #111111;
-    --secondary-black: #222222;
-    --text-color: #ffffff;
+    /* تم تغيير الألوان إلى تدرجات الرمادي */
+    --main-red: #A9A9A9;       /* رمادي متوسط/فاتح للتوهج والحدود */
+    --main-black: #1E1E1E;     /* رمادي داكن جدًا للخلفية */
+    --secondary-black: #2C2C2C; /* رمادي أغمق للعناصر الثانوية */
+    --text-color: #F0F0F0;     /* أبيض ساطع للنص */
 }
 
 * {
@@ -19,7 +20,7 @@ body {
     background-color: var(--main-black);
     color: var(--text-color);
     text-align: center;
-    direction: rtl; 
+    direction: rtl;    
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -35,10 +36,11 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('background.jpg'); 
+    /* ملاحظة: تحتاج إلى التأكد من وجود ملف background.jpg */
+    background-image: url('background.jpg');    
     background-size: cover;
     background-position: center;
-    filter: blur(8px); 
+    filter: blur(8px);    
     z-index: -2;
     transition: filter 0.5s ease;
 }
@@ -49,7 +51,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); 
+    background-color: rgba(0, 0, 0, 0.7);    
     z-index: -1;
 }
 
@@ -65,12 +67,13 @@ header, main, footer {
 }
 
 .profile-image {
-    width: 200px; 
+    width: 200px;    
     height: 200px;
-    border-radius: 20%; 
+    border-radius: 20%;    
     object-fit: cover;
-    border: 1px solid var(--main-red); 
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 5px var(--text-color); 
+    border: 1px solid var(--main-red);    
+    /* تغيير لون التوهج إلى الرمادي */
+    box-shadow: 0 0 25px rgba(169, 169, 169, 0.8), 0 0 5px var(--text-color);    
     transition: transform 0.3s ease;
 }
 
@@ -80,8 +83,8 @@ header, main, footer {
 
 h1 {
     color: var(--main-red);
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    /* تغيير لون ظل النص إلى الرمادي */
+    text-shadow: 0 0 10px rgba(169, 169, 169, 0.7);
 }
 
 .description {
@@ -91,13 +94,14 @@ h1 {
     background-color: var(--secondary-black);
     padding: 15px;
     border-radius: 8px;
+    /* تغيير لون الحد الجانبي إلى الرمادي */
     border-left: 3px solid var(--main-red);
 }
 
 /* تخطيط شبكة البرامج (Grid) */
 .applications-grid-section h2 {
     color: var(--text-color);
-    margin-bottom: 30px;
+    /* تغيير لون الحد السفلي إلى الرمادي */
     border-bottom: 2px solid var(--main-red);
     display: inline-block;
     padding-bottom: 5px;
@@ -106,12 +110,12 @@ h1 {
 .programs-grid {
     display: grid;
     /* يتكيف ليعرض ما يصل إلى 5 أعمدة أو أكثر على الشاشات الكبيرة */
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-    gap: 15px; 
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));    
+    gap: 15px;    
     max-width: 1200px;
     margin: 0 auto 50px;
     padding: 20px;
-    background-color: rgba(17, 17, 17, 0.5); 
+    background-color: rgba(17, 17, 17, 0.5);    
     border-radius: 10px;
 }
 
@@ -121,6 +125,7 @@ h1 {
     color: var(--text-color);
     background-color: var(--main-black);
     padding: 10px;
+    /* تغيير لون الحد إلى الرمادي */
     border: 1px solid var(--main-red);
     border-radius: 8px;
     display: flex;
@@ -130,6 +135,7 @@ h1 {
     text-align: center;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    /* تغيير لون ظل التوهج الأساسي إلى الرمادي */
     box-shadow: 0 0 5px var(--main-red);
 
     /* الحركة الخفيفة على العنصر كله */
@@ -137,6 +143,7 @@ h1 {
 }
 
 @keyframes low-pulse {
+    /* تغيير لون التوهج الداخلي والخارجي إلى الرمادي */
     0% { transform: translateY(0); box-shadow: 0 0 5px var(--main-red), inset 0 0 5px var(--main-red); }
     50% { transform: translateY(-2px); box-shadow: 0 0 8px var(--main-red), inset 0 0 8px var(--main-red); }
     100% { transform: translateY(0); box-shadow: 0 0 5px var(--main-red), inset 0 0 5px var(--main-red); }
@@ -144,35 +151,37 @@ h1 {
 
 .program-item:hover {
     background-color: var(--secondary-black);
-    transform: scale(1.03); 
+    transform: scale(1.03);    
     border-color: var(--text-color);
+    /* تغيير لون ظل التوهج عند التمرير إلى الرمادي */
     box-shadow: 0 0 15px var(--main-red);
 }
 
 /* صورة البرنامج والحركة الإهتزازية (Paper Shake) */
 .program-item img {
-    width: 60px; 
+    width: 60px;    
     height: 60px;
     object-fit: contain;
     margin-bottom: 8px;
-    border-radius: 5px; 
+    border-radius: 5px;    
     
     /* تطبيق حركة اهتزاز الورقة */
-    animation: paper-shake 2s infinite ease-in-out; 
+    animation: paper-shake 2s infinite ease-in-out;    
     
-    transition: transform 0.2s ease; 
+    transition: transform 0.2s ease;    
 }
 
 @keyframes paper-shake {
-    0%, 100% { 
-        transform: rotate(0deg) scale(1); 
+    0%, 100% {    
+        transform: rotate(0deg) scale(1);    
     }
-    25% { 
-        transform: rotate(0.5deg) scale(1.02); 
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); 
+    25% {    
+        transform: rotate(0.5deg) scale(1.02);    
+        /* تغيير لون التوهج في الحركة إلى الرمادي */
+        box-shadow: 0 0 10px rgba(169, 169, 169, 0.5);    
     }
-    75% { 
-        transform: rotate(-0.5deg) scale(1.02); 
+    75% {    
+        transform: rotate(-0.5deg) scale(1.02);    
     }
 }
 
@@ -185,7 +194,8 @@ h1 {
     font-size: 14px;
     font-weight: bold;
     color: var(--text-color);
-    background-color: rgba(255, 0, 0, 0.1);
+    /* تغيير لون الخلفية الشفافة إلى رمادي شفاف */
+    background-color: rgba(169, 169, 169, 0.1);
     width: 100%;
     padding: 5px 0;
     border-radius: 0 0 8px 8px;
@@ -211,18 +221,20 @@ h1 {
 }
 
 /* الألوان الخاصة بالمنصات */
+/* تم تغيير يوتيوب من الأحمر إلى الرمادي */
 .social-icon.youtube {
-    color: #FF0000; /* اللون الأحمر ليوتيوب */
+    color: var(--main-red); /* #A9A9A9 */
 }
 
+/* تم إزالة التدرج اللوني لإنستغرام وإبداله بالرمادي */
 .social-icon.instagram {
-    /* تدرج لوني لإنستغرام */
-    color: transparent;
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent; /* لضمان تطبيق التدرج اللوني */
+    color: var(--main-red); 
+    background: none; 
+    -webkit-background-clip: unset; 
+    background-clip: unset; 
+    -webkit-text-fill-color: unset; 
 }
+
 
 /* تأثير التمرير (Hover Effect) */
 .social-icon:hover {
@@ -234,5 +246,6 @@ footer {
     margin-top: auto;
     padding: 10px 20px;
     background-color: rgba(0, 0, 0, 0.5);
+    /* تغيير لون الحد العلوي إلى الرمادي */
     border-top: 1px solid var(--main-red);
 }
