@@ -3,206 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YASSER | Dark Mode</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>YASSER-27 - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* تعريف المتغيرات اللونية المستوحاة من CustomTkinter */
         :root {
-            /* درجات الأسود المطلق والرمادي الفاخر */
-            --bg-dark: #050505;        /* أسود شبه كامل */
-            --card-dark: #121212;      /* أسود البطاقة */
-            --item-dark: #1c1c1c;      /* أسود العناصر */
-            --accent: #00d4ff;         /* لون التمييز - سيان مضيء */
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --ctk-bg: #000000;
+            --ctk-frame: #1A1A1A;
+            --ctk-border: #2B2B2B;
+            --ctk-hover: #252525;
+            --ctk-accent: #00a8a8; /* لون Turquoise مميز بديل للأزرق */
+            --ctk-text: #E0E0E0;
+            --ctk-light-text: #AAAAAA;
         }
 
         body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-dark);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-main);
-            padding: 20px;
+            background-color: var(--ctk-bg);
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            color: var(--ctk-text);
+            overflow-x: hidden; /* لمنع ظهور شريط التمرير الأفقي بسبب الجزيئات */
+            position: relative; /* لتحديد موقع الجزيئات */
         }
 
-        .container {
-            max-width: 420px;
+        /* Particles JS Container for Watch Dogs effect */
+        #particles-js {
+            position: absolute;
             width: 100%;
-            background: var(--card-dark);
-            padding: 40px 25px;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0; /* تأكد أنها في الخلفية */
+        }
+
+        /* جعل كل المحتوى الآخر فوق الجزيئات */
+        .content-wrapper {
+            position: relative;
+            z-index: 1; 
+        }
+
+        /* قسم الملف الشخصي (Profile Section) */
+        .user-profile {
             text-align: center;
-            border: 1px solid #252525; /* حدود خفيفة جداً للتمييز */
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, #0a0a0a, #000000);
+            position: relative;
+            z-index: 1;
         }
 
-        .profile-image {
-            width: 120px;
-            height: 120px;
+        .user-photo {
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 2px solid var(--accent);
+            border: 4px solid var(--ctk-accent);
+            padding: 5px;
             margin-bottom: 20px;
-            object-fit: cover;
-            padding: 4px;
-            background: var(--bg-dark);
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 200, 200, 0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        .user-photo:hover {
+            transform: scale(1.08) rotate(3deg);
+            box-shadow: 0 0 25px rgba(0, 200, 200, 0.8);
+        }
+
+        .user-info h1 {
+            color: white;
+            margin: 0;
+            font-size: 32px;
+            letter-spacing: 1.5px;
             font-weight: 700;
-            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 200, 200, 0.3);
         }
 
-        .description {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
+        .user-info p {
+            color: var(--ctk-light-text);
+            font-size: 16px;
+            margin-top: 10px;
         }
 
         .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            margin-top: 25px;
         }
 
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            background: var(--item-dark);
-            border-radius: 10px;
-            color: #fff;
-            text-decoration: none;
-            transition: 0.3s;
-            border: 1px solid #333;
+        .social-links a {
+            color: var(--ctk-light-text);
+            font-size: 24px;
+            margin: 0 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
-        .social-icon:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+        .social-links a:hover {
+            color: var(--ctk-accent);
             transform: translateY(-3px);
         }
+        .social-links .github:hover { color: #888888; }
+        .social-links .youtube:hover { color: #FF0000; }
+        .social-links .instagram:hover { color: #E1306C; }
 
-        .programs-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+
+        /* حاوية الشبكة (Grid Container) */
+        .ctk-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            padding: 40px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
+        /* عنصر البرنامج (Program Item) */
         .program-item {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            padding: 16px;
-            background: var(--item-dark);
-            border-radius: 12px;
+            justify-content: center;
+            padding: 35px 20px;
             text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            transition: 0.2s;
-            border: 1px solid transparent;
-        }
-
-        .program-item i {
-            margin-left: 15px;
-            font-size: 1.1rem;
-            color: var(--accent);
+            color: var(--ctk-text);
+            background-color: var(--ctk-frame);
+            border: 1px solid var(--ctk-border);
+            border-radius: 15px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-height: 180px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .program-item:hover {
-            background: #252525;
-            border-color: #444;
-            transform: scale(1.02);
+            background-color: #2a2a2a;
+            border-color: var(--ctk-accent);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
         }
 
-        footer {
-            margin-top: 35px;
-            font-size: 0.7rem;
-            color: #444;
-            letter-spacing: 2px;
+        .program-item i {
+            font-size: 45px;
+            margin-bottom: 20px;
+            color: var(--ctk-accent);
+            transition: transform 0.3s ease, color 0.3s ease;
         }
+
+        .program-item:hover i {
+            transform: scale(1.15);
+            color: white; /* لون الأيقونة أبيض عند المرور */
+        }
+
+        .program-item span {
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.4;
+            letter-spacing: 0.8px;
+            color: var(--ctk-light-text);
+            transition: color 0.3s ease;
+        }
+
+        .program-item:hover span {
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--ctk-light-text);
+            font-size: 12px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
+        .footer a {
+            color: var(--ctk-accent);
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
 
-    <div class="container">
-        <header>
-            <img src="user.jpg" alt="ياسر" class="profile-image">
-            <h1>ياسر هوم | YASSER</h1>
-            <p class="description">مطور أدوات تقنية. استكشف برمجياتي ومشاريعي التقنية المتاحة للجميع.</p>
-
-            <div class="social-links">
-                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+    <div class="content-wrapper">
+        <div class="user-profile">
+            <img src="https://github.com/YASSER-27.png" alt="Yasser" class="user-photo">
+            <div class="user-info">
+                <h1>YASSER-27</h1>
+                <p>Welcome to my projects showcase!</p>
+                <div class="social-links">
+                    <a href="https://github.com/YASSER-27" class="github" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.youtube.com/@xalala1484/featured" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/yassirhoum/?hl=en" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
-        </header>
+        </div>
 
-        <main>
-            <div class="programs-list">
-                <a href="https://github.com/YASSER-27/youtube-hd-video-download" class="program-item" target="_blank">
-                    <i class="fab fa-youtube"></i> YouTube HD Downloader
-                </a>
-                
-                <a href="https://github.com/YASSER-27/Ai-Image-creator" class="program-item" target="_blank">
-                    <i class="fas fa-wand-magic-sparkles"></i> AI Image Creator
-                </a>
-                
-                <a href="https://github.com/YASSER-27/Git-Uploader" class="program-item" target="_blank">
-                    <i class="fas fa-cloud-arrow-up"></i> Git Uploader Tool
-                </a>  
-                
-                <a href="https://github.com/YASSER-27/Creat-Ai-image-on-phone" class="program-item" target="_blank">
-                    <i class="fas fa-mobile-screen-button"></i> Mobile AI Generator
-                </a>
-                
-                <a href="https://github.com/YASSER-27/jump_game_html" class="program-item" target="_blank">
-                    <i class="fas fa-gamepad"></i> Jump Game (HTML5)
-                </a>
+        <div class="ctk-grid-container">
+            <a href="https://github.com/YASSER-27/youtube-hd-video-download" class="program-item" target="_blank">
+                <i class="fab fa-youtube"></i>
+                <span>YouTube HD Downloader</span>
+            </a>
 
-                <a href="https://github.com/YASSER-27/Ai-Server-LLM-Pc-and-Android" class="program-item" target="_blank">
-                    <i class="fas fa-server"></i> AI Server LLM
-                </a>                
-                
-                <a href="https://github.com/YASSER-27/wlan-show-key" class="program-item" target="_blank">
-                    <i class="fas fa-wifi"></i> Wifi Password Tool
-                </a>
+            <a href="https://github.com/YASSER-27/Ai-Image-creator" class="program-item" target="_blank">
+                <i class="fas fa-wand-magic-sparkles"></i>
+                <span>AI Image Creator</span>
+            </a>
 
-                <a href="https://github.com/YASSER-27/Paste-Image-to-Download" class="program-item" target="_blank">
-                    <i class="fas fa-paste"></i> Paste Image Downloader
-                </a>
-				<a href="https://github.com/YASSER-27/Picture-in-Picture-google_chrome" class="program-item" target="_blank">
-                    <i class="fas fa-video"></i> Picture-in-Picture for any video
-                </a>
-				<a href="https://github.com/YASSER-27/Home-move-server" class="program-item" target="_blank">
-                    <i class="fas fa-film"></i> Home-move-server
-                </a>
-				<a href="https://github.com/YASSER-27/easy-run-gguf-model" class="program-item" target="_blank">
-                    <i class="fab fa-cloudsmith"></i> GGUF model run
-                </a>
-				<a href="https://github.com/YASSER-27/Paste-Image-to-Download-final" class="program-item" target="_blank">
-                    <i class="fas fa-paste"></i> paste image to Download
-                </a>
-            </div>
-        </main>
+            <a href="https://github.com/YASSER-27/Git-Uploader" class="program-item" target="_blank">
+                <i class="fas fa-cloud-arrow-up"></i>
+                <span>Git Uploader Tool</span>
+            </a>
 
-        <footer>
-            <p>&copy; 2025 YASSER DARK EDITION</p>
-        </footer>
+            <a href="https://github.com/YASSER-27/Creat-Ai-image-on-phone" class="program-item" target="_blank">
+                <i class="fas fa-mobile-screen-button"></i>
+                <span>Mobile AI Generator</span>
+            </a>
+
+            <a href="https://github.com/YASSER-27/jump_game_html" class="program-item" target="_blank">
+                <i class="fas fa-gamepad"></i>
+                <span>Jump Game (HTML5)</span>
+            </a>
+
+            <a href="https://github.com/YASSER-27/Ai-Server-LLM-Pc-and-Android" class="program-item" target="_blank">
+                <i class="fas fa-server"></i>
+                <span>AI Server LLM</span>
+            </a>
+
+            <a href="https://github.com/YASSER-27/wlan-show-key" class="program-item" target="_blank">
+                <i class="fas fa-wifi"></i>
+                <span>Wifi Password Tool</span>
+            </a>
+
+            <a href="https://github.com/YASSER-27/Picture-in-Picture-google_chrome" class="program-item" target="_blank">
+                <i class="fas fa-video"></i>
+                <span>Picture-in-Picture</span>
+            </a>
+
+            <a href="https://github.com/YASSER-27/Home-move-server" class="program-item" target="_blank">
+                <i class="fas fa-film"></i>
+                <span>Home Movie Server</span>
+            </a>
+
+            <a href="https://github.com/YASSER-27/easy-run-gguf-model" class="program-item" target="_blank">
+                <i class="fab fa-cloudsmith"></i>
+                <span>GGUF Model Engine</span>
+            </a>
+
+            <a href="https://github.com/YASSER-27/Paste-Image-to-Download-final" class="program-item" target="_blank">
+                <i class="fas fa-paste"></i>
+                <span>Paste Image (Final)</span>
+            </a>
+
+            <a href="https://github.com/YASSER-27/Paste-Image-to-Download" class="program-item" target="_blank">
+                <i class="fas fa-paste"></i>
+                <span>Paste Image Downloader</span>
+            </a>
+        </div>
+
+        <div class="footer">
+            Developed by YASSER-27 &copy; <span id="current-year"></span>. All rights reserved.
+        </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize Particles.js for the Watch Dogs effect
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80, // عدد الجزيئات
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#00a8a8" // لون الجزيئات
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150, // مسافة الربط بين الجزيئات
+                    "color": "#00a8a8", // لون الخطوط الرابطة
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3, // سرعة حركة الجزيئات
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab" // عند مرور الماوس، تلتصق الجزيئات بالماوس
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push" // عند الضغط، تظهر جزيئات جديدة
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 180, // مسافة الالتقاط بالماوس
+                        "line_linked": {
+                            "opacity": 1 // شفافية الخطوط عند الالتقاط
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // تحديث السنة في الفوتر تلقائياً
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
