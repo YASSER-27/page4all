@@ -8,182 +8,215 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* تعريف المتغيرات اللونية المستوحاة من CustomTkinter */
+        /* --- متغيرات الألوان: Raindrop Sunset Mono --- */
         :root {
-            --ctk-bg: #000000;
-            --ctk-frame: #1A1A1A;
-            --ctk-border: #2B2B2B;
-            --ctk-hover: #252525;
-            --ctk-accent: #00a8a8; /* لون Turquoise مميز بديل للأزرق */
-            --ctk-text: #E0E0E0;
-            --ctk-light-text: #AAAAAA;
+            --bg-base: #030303;
+            --bg-container: #080808;
+            --accent-purple: #7042f8; 
+            --accent-sunset: #ff4d4d;
+            --text-main: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.45);
+            --border-raycast: rgba(255, 255, 255, 0.06);
+            --glass-effect: rgba(12, 12, 12, 0.7);
+            --raycast-glow: 0px 0px 40px 10px rgba(112, 66, 248, 0.12);
+            --card-radius: 22px;
+        }
+
+        /* --- طبقة الحماية 1: منع تحديد النصوص وسحب الصور --- */
+        * {
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        img {
+            -webkit-user-drag: none;
+            pointer-events: none;
         }
 
         body {
-            background-color: var(--ctk-bg);
+            background-color: var(--bg-base);
+            background-image: 
+                radial-gradient(circle at 50% -10%, rgba(112, 66, 248, 0.18), transparent 70%),
+                radial-gradient(circle at 0% 100%, rgba(255, 77, 77, 0.08), transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(112, 66, 248, 0.05), transparent 50%);
+            background-attachment: fixed;
             margin: 0;
-            font-family: 'Inter', sans-serif;
-            color: var(--ctk-text);
-            overflow-x: hidden; /* لمنع ظهور شريط التمرير الأفقي بسبب الجزيئات */
-            position: relative; /* لتحديد موقع الجزيئات */
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Particles JS Container for Watch Dogs effect */
         #particles-js {
-            position: absolute;
+            position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            z-index: 0; /* تأكد أنها في الخلفية */
+            z-index: 0;
+            pointer-events: none;
         }
 
-        /* جعل كل المحتوى الآخر فوق الجزيئات */
         .content-wrapper {
             position: relative;
-            z-index: 1; 
+            z-index: 1;
         }
 
-        /* قسم الملف الشخصي (Profile Section) */
+        /* --- الملف الشخصي --- */
         .user-profile {
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, #0a0a0a, #000000);
+            padding: 80px 20px 40px;
             position: relative;
-            z-index: 1;
         }
 
         .user-photo {
             width: 140px;
             height: 140px;
             border-radius: 50%;
-            border: 4px solid var(--ctk-accent);
-            padding: 5px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(0, 200, 200, 0.4);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 2px solid var(--border-raycast);
+            padding: 6px;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-sunset));
+            box-shadow: 0 0 30px rgba(112, 66, 248, 0.3);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: auto !important; /* للسماح بالمرور فوقها بالماوس */
         }
 
         .user-photo:hover {
-            transform: scale(1.08) rotate(3deg);
-            box-shadow: 0 0 25px rgba(0, 200, 200, 0.8);
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 0 50px rgba(112, 66, 248, 0.5);
+            border-color: rgba(255,255,255,0.2);
         }
 
         .user-info h1 {
-            color: white;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            background: linear-gradient(135deg, #fff 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin: 0;
-            font-size: 32px;
-            letter-spacing: 1.5px;
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(0, 200, 200, 0.3);
         }
 
         .user-info p {
-            color: var(--ctk-light-text);
+            color: var(--text-dim);
             font-size: 16px;
-            margin-top: 10px;
+            margin-top: 12px;
+            font-weight: 400;
         }
 
-        .social-links {
-            margin-top: 25px;
-        }
-
-        .social-links a {
-            color: var(--ctk-light-text);
-            font-size: 24px;
-            margin: 0 15px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--ctk-accent);
-            transform: translateY(-3px);
-        }
-        .social-links .github:hover { color: #888888; }
-        .social-links .youtube:hover { color: #FF0000; }
-        .social-links .instagram:hover { color: #E1306C; }
-
-
-        /* حاوية الشبكة (Grid Container) */
+        /* --- شبكة البرامج --- */
         .ctk-grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-            padding: 40px 30px;
+            gap: 30px;
+            padding: 40px 6%;
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
         }
 
-        /* عنصر البرنامج (Program Item) */
         .program-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--card-radius);
+            padding: 40px 25px;
+            text-decoration: none;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 35px 20px;
-            text-decoration: none;
-            color: var(--ctk-text);
-            background-color: var(--ctk-frame);
-            border: 1px solid var(--ctk-border);
-            border-radius: 15px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            min-height: 180px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-raycast);
+            backdrop-filter: blur(10px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-item::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(112, 66, 248, 0.08), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
         }
 
         .program-item:hover {
-            background-color: #2a2a2a;
-            border-color: var(--ctk-accent);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-purple);
+            box-shadow: var(--raycast-glow);
         }
 
+        .program-item:hover::before { opacity: 1; }
+
         .program-item i {
-            font-size: 45px;
+            font-size: 48px;
             margin-bottom: 20px;
-            color: var(--ctk-accent);
-            transition: transform 0.3s ease, color 0.3s ease;
+            color: var(--accent-purple);
+            transition: all 0.4s ease;
+            z-index: 2;
         }
 
         .program-item:hover i {
-            transform: scale(1.15);
-            color: white; /* لون الأيقونة أبيض عند المرور */
+            color: white;
+            transform: scale(1.1) rotate(-5deg);
+            filter: drop-shadow(0 0 15px var(--accent-purple));
         }
 
         .program-item span {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 700;
-            text-align: center;
-            line-height: 1.4;
-            letter-spacing: 0.8px;
-            color: var(--ctk-light-text);
-            transition: color 0.3s ease;
+            color: var(--text-dim);
+            z-index: 2;
+            transition: color 0.3s;
         }
 
-        .program-item:hover span {
-            color: white;
+        .program-item:hover span { color: white; }
+
+        /* --- الروابط الاجتماعية --- */
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: var(--ctk-light-text);
-            font-size: 12px;
-            margin-top: 50px;
-            position: relative;
-            z-index: 1;
-        }
-        .footer a {
-            color: var(--ctk-accent);
+        .social-links a {
+            color: var(--text-dim);
+            font-size: 22px;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 10px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-raycast);
             text-decoration: none;
         }
-        .footer a:hover {
-            text-decoration: underline;
+
+        .social-links a:hover {
+            color: white;
+            transform: translateY(-5px);
+            background: rgba(112, 66, 248, 0.2);
+            border-color: var(--accent-purple);
         }
 
+        /* --- الفوتر --- */
+        .footer {
+            text-align: center;
+            padding: 50px;
+            color: var(--text-dim);
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        /* --- سكرول بار --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { 
+            background: var(--accent-purple); 
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -208,60 +241,53 @@
                 <i class="fab fa-youtube"></i>
                 <span>YouTube HD Downloader</span>
             </a>
-
             <a href="https://github.com/YASSER-27/Ai-Image-creator" class="program-item" target="_blank">
                 <i class="fas fa-wand-magic-sparkles"></i>
                 <span>AI Image Creator</span>
             </a>
-
             <a href="https://github.com/YASSER-27/Git-Uploader" class="program-item" target="_blank">
                 <i class="fas fa-cloud-arrow-up"></i>
                 <span>Git Uploader Tool</span>
             </a>
-
             <a href="https://github.com/YASSER-27/Creat-Ai-image-on-phone" class="program-item" target="_blank">
                 <i class="fas fa-mobile-screen-button"></i>
                 <span>Mobile AI Generator</span>
             </a>
-
             <a href="https://github.com/YASSER-27/jump_game_html" class="program-item" target="_blank">
                 <i class="fas fa-gamepad"></i>
                 <span>Jump Game (HTML5)</span>
             </a>
-
             <a href="https://github.com/YASSER-27/Ai-Server-LLM-Pc-and-Android" class="program-item" target="_blank">
                 <i class="fas fa-server"></i>
                 <span>AI Server LLM</span>
             </a>
-
             <a href="https://github.com/YASSER-27/wlan-show-key" class="program-item" target="_blank">
                 <i class="fas fa-wifi"></i>
                 <span>Wifi Password Tool</span>
             </a>
-
             <a href="https://github.com/YASSER-27/Picture-in-Picture-google_chrome" class="program-item" target="_blank">
                 <i class="fas fa-video"></i>
                 <span>Picture-in-Picture</span>
             </a>
-
             <a href="https://github.com/YASSER-27/Home-move-server" class="program-item" target="_blank">
                 <i class="fas fa-film"></i>
                 <span>Home Movie Server</span>
             </a>
-
             <a href="https://github.com/YASSER-27/easy-run-gguf-model" class="program-item" target="_blank">
                 <i class="fab fa-cloudsmith"></i>
                 <span>GGUF Model Engine</span>
             </a>
-
             <a href="https://github.com/YASSER-27/Paste-Image-to-Download-final" class="program-item" target="_blank">
                 <i class="fas fa-paste"></i>
                 <span>Paste Image (Final)</span>
             </a>
-
             <a href="https://github.com/YASSER-27/Paste-Image-to-Download" class="program-item" target="_blank">
-                <i class="fas fa-paste"></i>
+                <i class="fas fa-file-image"></i>
                 <span>Paste Image Downloader</span>
+            </a>
+			<a href="https://github.com/YASSER-27/Fast-Scan-Folder" class="program-item" target="_blank">
+                <i class="fas fa-folder-tree"></i>
+                <span>Fast Scan Folder</span>
             </a>
         </div>
 
@@ -271,115 +297,47 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
     <script>
-        // Initialize Particles.js for the Watch Dogs effect
+        // 1. منع القائمة اليمنى
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. منع اختصارات لوحة المفاتيح (F12, Ctrl+Shift+I, etc.)
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123 || 
+                (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) ||
+                (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) ||
+                (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) ||
+                (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
+                return false;
+            }
+        };
+
+        // 3. فخ الـ Debugger (سيتوقف المتصفح إذا تم فتح الـ Inspect)
+        setInterval(function() {
+            debugger;
+        }, 100);
+
+        // --- إعداد الجزيئات (Particles) متوافقة مع الثيم البنفسجي ---
         particlesJS('particles-js', {
             "particles": {
-                "number": {
-                    "value": 80, // عدد الجزيئات
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#00a8a8" // لون الجزيئات
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
-                    }
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150, // مسافة الربط بين الجزيئات
-                    "color": "#00a8a8", // لون الخطوط الرابطة
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 3, // سرعة حركة الجزيئات
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#7042f8" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3, "random": false },
+                "size": { "value": 2, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#7042f8", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
             },
             "interactivity": {
                 "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "grab" // عند مرور الماوس، تلتصق الجزيئات بالماوس
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push" // عند الضغط، تظهر جزيئات جديدة
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 180, // مسافة الالتقاط بالماوس
-                        "line_linked": {
-                            "opacity": 1 // شفافية الخطوط عند الالتقاط
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.8 } } }
             },
             "retina_detect": true
         });
 
-        // تحديث السنة في الفوتر تلقائياً
+        // تحديث السنة
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
