@@ -200,9 +200,14 @@ footer{border-top:1px solid var(--border);padding:30px 0 48px;display:flex;align
         <div class="adm-stat"><div class="adm-sn" id="aNew">0</div><div class="adm-sl">Added</div></div>
         <div class="adm-stat"><div class="adm-sn" id="aDef">0</div><div class="adm-sl">Default</div></div>
       </div>
-      <button class="copy-btn" onclick="copyCode()">
-        <i class="fas fa-code"></i> Copy Updated Code &rarr; Replace PROJECTS in file &rarr; Upload to GitHub
-      </button>
+      <div style="display:flex;gap:8px;margin-bottom:22px">
+        <button class="copy-btn" onclick="copyCode()" style="flex:1;margin-bottom:0">
+          <i class="fas fa-code"></i> Copy Code → GitHub backup
+        </button>
+        <button onclick="resetStorage()" style="background:rgba(255,77,77,.07);border:1px solid rgba(255,77,77,.22);border-radius:10px;padding:11px 14px;color:#ff6b6b;font-family:var(--mono);font-size:11px;cursor:pointer;transition:all .2s;white-space:nowrap" title="Clear saved data and reset to defaults">
+          <i class="fas fa-trash"></i> Reset
+        </button>
+      </div>
 
       <!-- NEW: URL-first smart input -->
       <label class="adm-lbl">GitHub URL <span class="r">*</span></label>
@@ -257,7 +262,32 @@ const PROJECTS = [
 ];
 /* ============================================== */
 
-let projects = PROJECTS.map(p=>({...p}));
+const LS_KEY = 'yasser27_projects';
+
+function saveToStorage(list){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(list)); }catch(e){}
+}
+
+function loadFromStorage(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(raw){
+      const saved = JSON.parse(raw);
+      if(Array.isArray(saved) && saved.length) return saved;
+    }
+  }catch(e){}
+  return null;
+}
+
+// Merge: saved list wins, but keep any default projects not already present
+function mergeWithDefaults(saved){
+  const savedUrls = new Set(saved.map(p=>p.url.toLowerCase()));
+  const missing = PROJECTS.filter(p=>!savedUrls.has(p.url.toLowerCase()));
+  return [...saved, ...missing];
+}
+
+const _saved = loadFromStorage();
+let projects = _saved ? mergeWithDefaults(_saved) : PROJECTS.map(p=>({...p}));
 let pendingProject = null;
 
 document.getElementById('yr').textContent = new Date().getFullYear();
@@ -367,8 +397,9 @@ function addProject(){
   if(!pendingProject.name){ toast('err','Name is required.'); return; }
 
   projects.unshift(pendingProject);
+  saveToStorage(projects);
   renderPublic(); renderAdmin();
-  toast('ok','"'+pendingProject.name+'" added. Press Copy Code then upload to GitHub.');
+  toast('ok','"'+pendingProject.name+'" added! Saved automatically.');
   clearForm();
 }
 
@@ -384,8 +415,9 @@ function clearForm(){
 
 function delProject(id){
   projects=projects.filter(p=>p.id!==id);
+  saveToStorage(projects);
   renderPublic(); renderAdmin();
-  toast('ok','Removed. Press Copy Code then upload to GitHub.');
+  toast('ok','Removed and saved automatically.');
 }
 
 function renderPublic(){
@@ -414,6 +446,14 @@ function renderAdmin(){
     row.innerHTML='<div class="dot '+(isNew?'n':'d')+'" title="'+(isNew?'Added by you':'Default')+'"></div><div class="adm-info"><div class="adm-pname">'+esc(p.name)+'</div><div class="adm-purl">'+esc(p.url)+'</div></div>'+(p.tag?'<span class="adm-tag">'+esc(p.tag)+'</span>':'')+'<button class="adm-del" onclick="delProject(\''+p.id+'\')"><i class="fas fa-trash-can"></i></button>';
     list.appendChild(row);
   });
+}
+
+function resetStorage(){
+  if(!confirm('هل تريد حذف كل المشاريع المضافة والرجوع للافتراضية؟')) return;
+  localStorage.removeItem(LS_KEY);
+  projects = PROJECTS.map(p=>({...p}));
+  renderPublic(); renderAdmin();
+  toast('ok','تم الإعادة للافتراضية.');
 }
 
 function copyCode(){
