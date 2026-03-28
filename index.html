@@ -1,381 +1,468 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YASSER-27 - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- متغيرات الألوان: Raindrop Sunset Mono --- */
-        :root {
-            --bg-base: #030303;
-            --bg-container: #080808;
-            --accent-purple: #7042f8; 
-            --accent-sunset: #ff4d4d;
-            --text-main: #ffffff;
-            --text-dim: rgba(255, 255, 255, 0.45);
-            --border-raycast: rgba(255, 255, 255, 0.06);
-            --glass-effect: rgba(12, 12, 12, 0.7);
-            --raycast-glow: 0px 0px 40px 10px rgba(112, 66, 248, 0.12);
-            --card-radius: 22px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YASSER-27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg:#030303; --purple:#7042f8; --red:#ff4d4d; --green:#22c55e;
+  --surface:rgba(255,255,255,0.03); --border:rgba(255,255,255,0.07);
+  --border-h:rgba(112,66,248,0.6); --text:#ffffff;
+  --text-dim:rgba(255,255,255,0.45); --text-mid:rgba(255,255,255,0.7);
+  --glow:0 0 40px 8px rgba(112,66,248,0.13);
+  --mono:'Geist Mono',monospace; --sans:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background-color:var(--bg);background-image:radial-gradient(circle at 50% -10%,rgba(112,66,248,0.18),transparent 65%),radial-gradient(circle at 0% 100%,rgba(255,77,77,0.07),transparent 50%),radial-gradient(circle at 100% 100%,rgba(112,66,248,0.06),transparent 50%);background-attachment:fixed;font-family:var(--sans);color:var(--text);-webkit-font-smoothing:antialiased;min-height:100vh;user-select:none}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4}
+.shell{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 24px}
+header{padding:64px 0 48px;border-bottom:1px solid var(--border);margin-bottom:52px;animation:up .5s ease both}
+.header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+.avatar-wrap{position:relative;width:54px;height:54px;cursor:pointer}
+.avatar{width:54px;height:54px;border-radius:50%;object-fit:cover;display:block;border:2px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(135deg,var(--purple),var(--red)) border-box;box-shadow:0 0 22px rgba(112,66,248,0.35);transition:box-shadow .4s}
+.avatar:hover{box-shadow:0 0 40px rgba(112,66,248,0.55)}
+.status-dot{position:absolute;bottom:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#22c55e;border:2px solid var(--bg);box-shadow:0 0 8px rgba(34,197,94,.6)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-size:13px;color:var(--text-dim);text-decoration:none;padding:6px 13px;border-radius:7px;border:1px solid transparent;transition:all .18s;letter-spacing:-.01em}
+.nav-links a:hover{color:var(--text);background:var(--surface);border-color:var(--border)}
+h1{font-size:27px;font-weight:600;letter-spacing:-.045em;margin-bottom:10px;background:linear-gradient(135deg,#fff 0%,rgba(112,66,248,.9) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.bio{font-size:15px;color:var(--text-dim);line-height:1.7;font-weight:300;max-width:480px;margin-bottom:20px}
+.meta-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-dim);font-family:var(--mono)}
+.meta-item i{font-size:10px}
+.socials{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap}
+.soc-a{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text-dim);text-decoration:none;padding:8px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface);backdrop-filter:blur(8px);transition:all .2s}
+.soc-a:hover{color:var(--text);border-color:var(--border-h);background:rgba(112,66,248,0.1);box-shadow:0 0 14px rgba(112,66,248,.15)}
+.soc-a i{font-size:13px}
+.section{margin-bottom:52px;animation:up .5s ease .1s both}
+.section-label{font-size:10.5px;font-family:var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:.13em;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 16px;backdrop-filter:blur(10px);transition:all .2s}
+.stat-box:hover{border-color:var(--border-h);box-shadow:var(--glow);background:rgba(112,66,248,0.06)}
+.stat-num{font-size:26px;font-weight:600;letter-spacing:-.05em;font-family:var(--mono);margin-bottom:3px;background:linear-gradient(135deg,#fff,rgba(112,66,248,.85));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:11.5px;color:var(--text-dim)}
+.project-list{display:flex;flex-direction:column}
+.project-row{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:padding .15s;gap:14px;border-radius:2px}
+.project-row:first-child{border-top:1px solid var(--border)}
+.project-row:hover{padding-left:8px}
+.proj-left{flex:1;min-width:0}
+.proj-name{font-size:14px;font-weight:500;color:var(--text-mid);letter-spacing:-.02em;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .15s}
+.project-row:hover .proj-name{color:var(--text)}
+.proj-desc{font-size:12.5px;color:var(--text-dim);font-weight:300;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.proj-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.proj-tag{font-size:10.5px;font-family:var(--mono);background:rgba(112,66,248,0.1);color:rgba(112,66,248,0.85);padding:3px 9px;border-radius:5px;border:1px solid rgba(112,66,248,0.2);white-space:nowrap}
+.proj-arrow{font-size:11px;color:var(--text-dim);opacity:0;transition:all .15s}
+.project-row:hover .proj-arrow{opacity:1;transform:translate(2px,-2px);color:var(--purple)}
+footer{border-top:1px solid var(--border);padding:30px 0 48px;display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:12px;color:var(--text-dim);font-family:var(--mono)}
+.footer-links{display:flex;gap:16px}
+.footer-links a{font-size:12px;color:var(--text-dim);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:var(--text)}
 
-        /* --- طبقة الحماية 1: منع تحديد النصوص وسحب الصور --- */
-        * {
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-        }
+/* ADMIN OVERLAY */
+#adminOverlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.88);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:16px}
+#adminOverlay.open{display:flex;animation:fadeOv .2s ease}
+@keyframes fadeOv{from{opacity:0}to{opacity:1}}
+.admin-box{background:#0a0a0d;border:1px solid rgba(112,66,248,.35);border-radius:20px;width:100%;max-width:600px;max-height:92vh;overflow-y:auto;box-shadow:0 0 100px rgba(112,66,248,.18);animation:boxUp .28s cubic-bezier(.34,1.56,.64,1)}
+@keyframes boxUp{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.adm-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#0a0a0d;z-index:1;border-radius:20px 20px 0 0}
+.adm-title{display:flex;align-items:center;gap:9px}
+.adm-pill{font-size:9px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.14em;background:rgba(112,66,248,.12);color:var(--purple);border:1px solid rgba(112,66,248,.28);padding:4px 10px;border-radius:20px}
+.adm-title h2{font-size:14.5px;font-weight:600;letter-spacing:-.03em}
+.adm-close{background:none;border:1px solid var(--border);border-radius:8px;color:var(--text-dim);font-size:13px;cursor:pointer;padding:7px 10px;transition:all .2s}
+.adm-close:hover{border-color:rgba(255,77,77,.4);color:var(--red);background:rgba(255,77,77,.08)}
+.adm-body{padding:20px 22px 24px}
+.adm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
+.adm-stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
+.adm-sn{font-size:20px;font-weight:600;font-family:var(--mono);letter-spacing:-.04em;background:linear-gradient(135deg,#fff,rgba(112,66,248,.85));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:2px}
+.adm-sl{font-size:10px;color:var(--text-dim)}
+.copy-btn{width:100%;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.22);border-radius:10px;padding:11px;color:#4ade80;font-family:var(--mono);font-size:11.5px;font-weight:500;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:22px}
+.copy-btn:hover{background:rgba(34,197,94,.16);box-shadow:0 0 20px rgba(34,197,94,.12)}
+.adm-lbl{display:block;font-size:10px;font-family:var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:.11em;margin-bottom:6px}
+.adm-lbl .r{color:var(--purple)}
 
-        img {
-            -webkit-user-drag: none;
-            pointer-events: none;
-        }
+/* URL INPUT ROW */
+.url-row{display:flex;gap:8px;align-items:stretch;margin-bottom:12px}
+.url-row .adm-inp{margin-bottom:0;flex:1}
+.fetch-btn{background:linear-gradient(135deg,var(--purple),#9060ff);border:none;border-radius:9px;padding:0 16px;color:#fff;font-family:var(--mono);font-size:11px;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(112,66,248,.28);flex-shrink:0}
+.fetch-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(112,66,248,.42)}
+.fetch-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
-        body {
-            background-color: var(--bg-base);
-            background-image: 
-                radial-gradient(circle at 50% -10%, rgba(112, 66, 248, 0.18), transparent 70%),
-                radial-gradient(circle at 0% 100%, rgba(255, 77, 77, 0.08), transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(112, 66, 248, 0.05), transparent 50%);
-            background-attachment: fixed;
-            margin: 0;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            color: var(--text-main);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+/* PREVIEW CARD */
+.preview-card{background:rgba(112,66,248,0.06);border:1px solid rgba(112,66,248,0.2);border-radius:12px;padding:14px 16px;margin-bottom:14px;animation:fadeOv .25s ease}
+.preview-card .pc-name{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px}
+.preview-card .pc-desc{font-size:12px;color:var(--text-dim);margin-bottom:8px;line-height:1.5}
+.preview-card .pc-meta{display:flex;gap:8px;flex-wrap:wrap}
+.preview-card .pc-tag{font-size:10px;font-family:var(--mono);background:rgba(112,66,248,0.15);color:rgba(112,66,248,0.9);padding:3px 9px;border-radius:5px;border:1px solid rgba(112,66,248,0.25)}
+.preview-card .pc-stars{font-size:10px;font-family:var(--mono);color:rgba(255,200,0,0.8);display:flex;align-items:center;gap:4px}
+.preview-card .pc-edit{margin-top:10px;display:flex;gap:8px}
+.preview-card .pc-edit input{flex:1;background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:7px;padding:7px 10px;color:var(--text);font-family:var(--mono);font-size:11.5px;outline:none;transition:border-color .2s;user-select:text}
+.preview-card .pc-edit input:focus{border-color:rgba(112,66,248,.5)}
 
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* --- الملف الشخصي --- */
-        .user-profile {
-            text-align: center;
-            padding: 80px 20px 40px;
-            position: relative;
-        }
-
-        .user-photo {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 2px solid var(--border-raycast);
-            padding: 6px;
-            margin-bottom: 25px;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-sunset));
-            box-shadow: 0 0 30px rgba(112, 66, 248, 0.3);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            pointer-events: auto !important; /* للسماح بالمرور فوقها بالماوس */
-        }
-
-        .user-photo:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 0 50px rgba(112, 66, 248, 0.5);
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        .user-info h1 {
-            font-size: 38px;
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            background: linear-gradient(135deg, #fff 0%, var(--accent-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0;
-        }
-
-        .user-info p {
-            color: var(--text-dim);
-            font-size: 16px;
-            margin-top: 12px;
-            font-weight: 400;
-        }
-
-        /* --- شبكة البرامج --- */
-        .ctk-grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            padding: 40px 6%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .program-item {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: var(--card-radius);
-            padding: 40px 25px;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border-raycast);
-            backdrop-filter: blur(10px);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .program-item::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(112, 66, 248, 0.08), transparent);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .program-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--accent-purple);
-            box-shadow: var(--raycast-glow);
-        }
-
-        .program-item:hover::before { opacity: 1; }
-
-        .program-item i {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: var(--accent-purple);
-            transition: all 0.4s ease;
-            z-index: 2;
-        }
-
-        .program-item:hover i {
-            color: white;
-            transform: scale(1.1) rotate(-5deg);
-            filter: drop-shadow(0 0 15px var(--accent-purple));
-        }
-
-        .program-item span {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-dim);
-            z-index: 2;
-            transition: color 0.3s;
-        }
-
-        .program-item:hover span { color: white; }
-
-        /* --- الروابط الاجتماعية --- */
-        .social-links {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-links a {
-            color: var(--text-dim);
-            font-size: 22px;
-            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 10px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border-raycast);
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            color: white;
-            transform: translateY(-5px);
-            background: rgba(112, 66, 248, 0.2);
-            border-color: var(--accent-purple);
-        }
-
-        /* --- الفوتر --- */
-        .footer {
-            text-align: center;
-            padding: 50px;
-            color: var(--text-dim);
-            font-size: 13px;
-            letter-spacing: 1px;
-        }
-
-        /* --- سكرول بار --- */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-base); }
-        ::-webkit-scrollbar-thumb { 
-            background: var(--accent-purple); 
-            border-radius: 10px;
-        }
-    </style>
+.adm-inp{width:100%;background:rgba(0,0,0,.45);border:1px solid var(--border);border-radius:9px;padding:10px 13px;color:var(--text);font-family:var(--mono);font-size:12.5px;outline:none;transition:border-color .2s,box-shadow .2s;user-select:text;margin-bottom:12px}
+.adm-inp::placeholder{color:rgba(255,255,255,.16)}
+.adm-inp:focus{border-color:rgba(112,66,248,.5);box-shadow:0 0 0 3px rgba(112,66,248,.07)}
+.adm-acts{display:flex;gap:8px;justify-content:flex-end;margin-top:4px;padding-top:16px;border-top:1px solid var(--border)}
+.adm-clr{background:none;border:1px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text-dim);font-family:var(--mono);font-size:11px;cursor:pointer;transition:all .2s}
+.adm-clr:hover{border-color:rgba(255,77,77,.35);color:var(--red);background:rgba(255,77,77,.06)}
+.adm-add{background:linear-gradient(135deg,var(--purple),#9060ff);border:none;border-radius:8px;padding:9px 18px;color:#fff;font-family:var(--mono);font-size:11.5px;font-weight:500;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:7px;box-shadow:0 4px 14px rgba(112,66,248,.28)}
+.adm-add:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(112,66,248,.42)}
+.adm-div{font-size:10px;font-family:var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:.13em;margin:20px 0 12px;display:flex;align-items:center;gap:8px}
+.adm-div::after{content:'';flex:1;height:1px;background:var(--border)}
+.adm-row{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);gap:10px}
+.adm-row:first-child{border-top:1px solid var(--border)}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dot.n{background:var(--green);box-shadow:0 0 6px rgba(34,197,94,.5)}
+.dot.d{background:rgba(255,255,255,.18)}
+.adm-info{flex:1;min-width:0}
+.adm-pname{font-size:13px;font-weight:500;color:var(--text-mid);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:1px}
+.adm-purl{font-size:10.5px;font-family:var(--mono);color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.adm-tag{font-size:9.5px;font-family:var(--mono);background:rgba(112,66,248,.1);color:rgba(112,66,248,.8);padding:2px 7px;border-radius:4px;border:1px solid rgba(112,66,248,.2);white-space:nowrap;flex-shrink:0}
+.adm-del{background:none;border:1px solid transparent;border-radius:6px;color:rgba(255,77,77,.3);font-size:11px;cursor:pointer;padding:5px 7px;transition:all .2s;flex-shrink:0}
+.adm-del:hover{color:var(--red);background:rgba(255,77,77,.1);border-color:rgba(255,77,77,.25)}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(70px);font-size:12px;font-family:var(--mono);padding:10px 18px;border-radius:10px;display:flex;align-items:center;gap:8px;z-index:2000;pointer-events:none;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .25s;opacity:0;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast.ok{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.25)}
+.toast.err{background:rgba(255,77,77,.15);color:#ff6b6b;border:1px solid rgba(255,77,77,.25)}
+.toast.inf{background:rgba(112,66,248,.15);color:#a78bfa;border:1px solid rgba(112,66,248,.25)}
+.toast.load{background:rgba(255,200,0,.1);color:#fbbf24;border:1px solid rgba(255,200,0,.2)}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--purple);border-radius:10px}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:520px){h1{font-size:22px}.stats-row{grid-template-columns:repeat(2,1fr)}.proj-tag,.nav-links{display:none}footer{flex-direction:column;gap:12px}.adm-stats{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body>
-    <div id="particles-js"></div>
-
-    <div class="content-wrapper">
-        <div class="user-profile">
-            <img src="https://github.com/YASSER-27.png" alt="Yasser" class="user-photo">
-            <div class="user-info">
-                <h1>YASSER-27</h1>
-                <p>Welcome to my projects showcase!</p>
-                <div class="social-links">
-                    <a href="https://github.com/YASSER-27" class="github" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.youtube.com/@xalala1484/featured" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.instagram.com/yassirhoum/?hl=en" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="ctk-grid-container">
-            <a href="https://github.com/YASSER-27/Find-Icon" class="program-item" target="_blank">
-                <i class="fas fa-pen-fancy"></i>
-                <span>Find Icon</span>
-            </a>
-			
-			<a href="https://github.com/YASSER-27/Smart-Capture" class="program-item" target="_blank">
-                <i class="fab fa-hashnode"></i>
-                <span>Smart Capture</span>
-            </a>
-			<a href="https://github.com/YASSER-27/Note-Studio" class="program-item" target="_blank">
-                <i class="fas fa-laptop-code"></i>
-                <span>NoteAI Studio</span>
-            </a>
-			<a href="https://github.com/YASSER-27/README-Builder" class="program-item" target="_blank">
-                <i class="fas fa-laptop-code"></i>
-                <span>README-Builder</span>
-            </a>
-
-            <a href="https://github.com/YASSER-27/LLMs" class="program-item" target="_blank">
-                <i class="fas fa-cloud-moon"></i>
-                <span>LLMs</span>
-            </a>
-			
-			<a href="https://github.com/YASSER-27/Note-Studio-Ai" class="program-item" target="_blank">
-                <i class="fas fa-face-laugh-wink"></i>
-                <span>Note Studio Ai</span>
-            </a>
-
-            
-            <a href="https://github.com/YASSER-27/youtube-hd-video-download" class="program-item" target="_blank">
-                <i class="fab fa-youtube"></i>
-                <span>YouTube HD Downloader</span>
-            </a>
-            <a href="https://github.com/YASSER-27/Ai-Image-creator" class="program-item" target="_blank">
-                <i class="fas fa-wand-magic-sparkles"></i>
-                <span>AI Image Creator</span>
-            </a>
-			<a href="https://github.com/YASSER-27/Icon-Maker" class="program-item" target="_blank">
-                <i class="fas fa-wand-magic-sparkles"></i>
-                <span>Icon-Maker</span>
-            </a>
-            <a href="https://github.com/YASSER-27/Git-Uploader" class="program-item" target="_blank">
-                <i class="fas fa-cloud-arrow-up"></i>
-                <span>Git Uploader Tool</span>
-            </a>
-            <a href="https://github.com/YASSER-27/Creat-Ai-image-on-phone" class="program-item" target="_blank">
-                <i class="fas fa-mobile-screen-button"></i>
-                <span>Mobile AI Generator</span>
-            </a>
-            <a href="https://github.com/YASSER-27/jump_game_html" class="program-item" target="_blank">
-                <i class="fas fa-gamepad"></i>
-                <span>Jump Game (HTML5)</span>
-            </a>
-            <a href="https://github.com/YASSER-27/Ai-Server-LLM-Pc-and-Android" class="program-item" target="_blank">
-                <i class="fas fa-server"></i>
-                <span>AI Server LLM</span>
-            </a>
-            <a href="https://github.com/YASSER-27/wlan-show-key" class="program-item" target="_blank">
-                <i class="fas fa-wifi"></i>
-                <span>Wifi Password Tool</span>
-            </a>
-            <a href="https://github.com/YASSER-27/Picture-in-Picture-google_chrome" class="program-item" target="_blank">
-                <i class="fas fa-video"></i>
-                <span>Picture-in-Picture</span>
-            </a>
-            <a href="https://github.com/YASSER-27/Home-move-server" class="program-item" target="_blank">
-                <i class="fas fa-film"></i>
-                <span>Home Movie Server</span>
-            </a>
-            <a href="https://github.com/YASSER-27/easy-run-gguf-model" class="program-item" target="_blank">
-                <i class="fab fa-cloudsmith"></i>
-                <span>GGUF Model Engine</span>
-            </a>
-			<a href="https://github.com/YASSER-27/Empire-Capture" class="program-item" target="_blank">
-                <i class="fas fa-paste"></i>
-                <span>Empire-Capture</span>
-            </a>
-            <a href="https://github.com/YASSER-27/Paste-Image-to-Download-final" class="program-item" target="_blank">
-                <i class="fas fa-paste"></i>
-                <span>Paste Image (Final)</span>
-            </a>
-            <a href="https://github.com/YASSER-27/Paste-Image-to-Download" class="program-item" target="_blank">
-                <i class="fas fa-file-image"></i>
-                <span>Paste Image Downloader</span>
-            </a>
-			<a href="https://github.com/YASSER-27/Fast-Scan-Folder" class="program-item" target="_blank">
-                <i class="fas fa-folder-tree"></i>
-                <span>Fast Scan Folder</span>
-            </a>
-        </div>
-
-        <div class="footer">
-            Developed by YASSER-27 &copy; <span id="current-year"></span>. All rights reserved.
-        </div>
+<div class="shell">
+  <header>
+    <div class="header-top">
+      <div class="avatar-wrap" id="avatarWrap">
+        <img src="https://github.com/YASSER-27.png" alt="Yasser" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=Y27&background=7042f8&color=fff&size=54'">
+        <div class="status-dot"></div>
+      </div>
+      <nav class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="https://github.com/YASSER-27" target="_blank">GitHub ↗</a>
+      </nav>
     </div>
+    <h1>YASSER-27</h1>
+    <p class="bio">Software developer focused on AI tooling, developer utilities, and open-source. Building things that remove friction from everyday workflows.</p>
+    <div class="meta-row">
+      <span class="meta-item"><i class="fas fa-map-pin"></i> Morocco</span>
+      <span class="meta-item"><i class="fas fa-circle" style="color:#22c55e;font-size:7px"></i> Available for collaboration</span>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/YASSER-27" class="soc-a" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://www.youtube.com/@xalala1484/featured" class="soc-a" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="https://www.instagram.com/yassirhoum/" class="soc-a" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    </div>
+  </header>
+  <div class="section">
+    <div class="section-label">Overview</div>
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-num" id="repoCount">0</div><div class="stat-label">Repositories</div></div>
+      <div class="stat-box"><div class="stat-num" data-count="5">0</div><div class="stat-label">Tech stacks</div></div>
+      <div class="stat-box"><div class="stat-num">AI</div><div class="stat-label">Main focus</div></div>
+    </div>
+  </div>
+  <div class="section" id="projects">
+    <div class="section-label">Projects</div>
+    <div class="project-list" id="projectList"></div>
+  </div>
+  <footer>
+    <span class="footer-copy">© <span id="yr"></span> YASSER-27</span>
+    <div class="footer-links">
+      <a href="https://github.com/YASSER-27" target="_blank">GitHub</a>
+      <a href="https://www.youtube.com/@xalala1484/featured" target="_blank">YouTube</a>
+      <a href="https://www.instagram.com/yassirhoum/" target="_blank">Instagram</a>
+    </div>
+  </footer>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<!-- ADMIN OVERLAY -->
+<div id="adminOverlay">
+  <div class="admin-box">
+    <div class="adm-head">
+      <div class="adm-title">
+        <span class="adm-pill"><i class="fas fa-lock" style="margin-right:4px;font-size:8px"></i>Admin</span>
+        <h2>Project Manager</h2>
+      </div>
+      <button class="adm-close" onclick="closeAdmin()"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="adm-body">
+      <div class="adm-stats">
+        <div class="adm-stat"><div class="adm-sn" id="aTotal">0</div><div class="adm-sl">Total</div></div>
+        <div class="adm-stat"><div class="adm-sn" id="aNew">0</div><div class="adm-sl">Added</div></div>
+        <div class="adm-stat"><div class="adm-sn" id="aDef">0</div><div class="adm-sl">Default</div></div>
+      </div>
+      <button class="copy-btn" onclick="copyCode()">
+        <i class="fas fa-code"></i> Copy Updated Code &rarr; Replace PROJECTS in file &rarr; Upload to GitHub
+      </button>
 
-    <script>
-        // 1. منع القائمة اليمنى
-        document.addEventListener('contextmenu', event => event.preventDefault());
+      <!-- NEW: URL-first smart input -->
+      <label class="adm-lbl">GitHub URL <span class="r">*</span></label>
+      <div class="url-row">
+        <input class="adm-inp" id="aUrl" type="text" placeholder="https://github.com/YASSER-27/my-repo" autocomplete="off" spellcheck="false">
+        <button class="fetch-btn" id="fetchBtn" onclick="fetchRepo()">
+          <i class="fas fa-wand-magic-sparkles"></i> Auto Fill
+        </button>
+      </div>
 
-        // 2. منع اختصارات لوحة المفاتيح (F12, Ctrl+Shift+I, etc.)
-        document.onkeydown = function(e) {
-            if (e.keyCode == 123 || 
-                (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) ||
-                (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) ||
-                (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) ||
-                (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
-                return false;
-            }
-        };
+      <!-- PREVIEW CARD — shown after fetch -->
+      <div id="previewCard" style="display:none"></div>
 
-        // 3. فخ الـ Debugger (سيتوقف المتصفح إذا تم فتح الـ Inspect)
-        setInterval(function() {
-            debugger;
-        }, 100);
+      <div class="adm-acts">
+        <button class="adm-clr" onclick="clearForm()"><i class="fas fa-rotate-left" style="margin-right:5px"></i>Clear</button>
+        <button class="adm-add" id="addBtn" onclick="addProject()" disabled style="opacity:.4;cursor:not-allowed"><i class="fas fa-plus"></i> Add Project</button>
+      </div>
+      <div class="adm-div" style="margin-top:24px">All Projects</div>
+      <div id="adminList"></div>
+    </div>
+  </div>
+</div>
 
-        // --- إعداد الجزيئات (Particles) متوافقة مع الثيم البنفسجي ---
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#7042f8" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.3, "random": false },
-                "size": { "value": 2, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#7042f8", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.8 } } }
-            },
-            "retina_detect": true
-        });
+<div class="toast" id="toast"></div>
 
-        // تحديث السنة
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
+<script>
+/* ================================================
+   PROJECTS DATA
+================================================ */
+const PROJECTS = [
+  { id:'d0',  name:'Note Studio AI',         desc:'AI-powered note taking and writing assistant',            url:'https://github.com/YASSER-27/Note-Studio-Ai',                   tag:'Python / AI' },
+  { id:'d1',  name:'NoteAI Studio',          desc:'Smart note editor with integrated AI capabilities',        url:'https://github.com/YASSER-27/Note-Studio',                      tag:'Python' },
+  { id:'d2',  name:'LLMs',                   desc:'Experiments and tools for running large language models',  url:'https://github.com/YASSER-27/LLMs',                             tag:'Python / LLM' },
+  { id:'d3',  name:'GGUF Model Engine',       desc:'Run GGUF quantized models with minimal setup',            url:'https://github.com/YASSER-27/easy-run-gguf-model',             tag:'llama.cpp' },
+  { id:'d4',  name:'AI Server LLM',          desc:'Local LLM server accessible on PC and Android',           url:'https://github.com/YASSER-27/Ai-Server-LLM-Pc-and-Android',   tag:'Python / Android' },
+  { id:'d5',  name:'AI Image Creator',       desc:'Generate images locally using open-source models',         url:'https://github.com/YASSER-27/Ai-Image-creator',                tag:'Python / AI' },
+  { id:'d6',  name:'Mobile AI Generator',    desc:'Run AI image generation directly on Android',              url:'https://github.com/YASSER-27/Creat-Ai-image-on-phone',         tag:'Android / AI' },
+  { id:'d7',  name:'README Builder',         desc:'Generate professional README files for your repos',        url:'https://github.com/YASSER-27/README-Builder',                  tag:'Tool' },
+  { id:'d8',  name:'Git Uploader',           desc:'Streamlined tool for pushing files to GitHub',             url:'https://github.com/YASSER-27/Git-Uploader',                    tag:'Git / CLI' },
+  { id:'d9',  name:'Find Icon',              desc:'Search and browse icons quickly from your desktop',        url:'https://github.com/YASSER-27/Find-Icon',                       tag:'Utility' },
+  { id:'d10', name:'Icon Maker',             desc:'Create and export custom icons with ease',                 url:'https://github.com/YASSER-27/Icon-Maker',                      tag:'Design' },
+  { id:'d11', name:'Smart Capture',          desc:'Intelligent screenshot and screen capture utility',        url:'https://github.com/YASSER-27/Smart-Capture',                   tag:'Utility' },
+  { id:'d12', name:'Empire Capture',         desc:'Advanced capture tool with extended feature set',          url:'https://github.com/YASSER-27/Empire-Capture',                  tag:'Utility' },
+  { id:'d13', name:'Paste Image Downloader', desc:'Paste a clipboard image and instantly save to disk',       url:'https://github.com/YASSER-27/Paste-Image-to-Download-final',  tag:'Utility' },
+  { id:'d14', name:'Fast Scan Folder',       desc:'High-speed directory scanning and file analysis',          url:'https://github.com/YASSER-27/Fast-Scan-Folder',                tag:'System' },
+  { id:'d15', name:'WiFi Password Tool',     desc:'Reveal saved WiFi passwords stored on your system',        url:'https://github.com/YASSER-27/wlan-show-key',                   tag:'System' },
+  { id:'d16', name:'YouTube HD Downloader',  desc:'Download YouTube videos in highest available quality',     url:'https://github.com/YASSER-27/youtube-hd-video-download',      tag:'Python' },
+  { id:'d17', name:'Picture-in-Picture',     desc:'Chrome extension for floating video overlay anywhere',     url:'https://github.com/YASSER-27/Picture-in-Picture-google_chrome',tag:'Extension' },
+  { id:'d18', name:'Home Movie Server',      desc:'Self-hosted local media server for your home network',     url:'https://github.com/YASSER-27/Home-move-server',                tag:'Server' },
+  { id:'d19', name:'Jump Game',              desc:'Browser-based HTML5 platformer with no dependencies',      url:'https://github.com/YASSER-27/jump_game_html',                  tag:'HTML5 / JS' },
+  { id:'d20', name:'Paste Image (v1)',        desc:'Original version of the clipboard-to-file download tool', url:'https://github.com/YASSER-27/Paste-Image-to-Download',         tag:'Utility' },
+];
+/* ============================================== */
+
+let projects = PROJECTS.map(p=>({...p}));
+let pendingProject = null;
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+let toastT;
+function toast(type,msg){
+  const el=document.getElementById('toast');
+  el.className='toast '+type;
+  el.innerHTML=(type==='ok'?'<i class="fas fa-check"></i>':type==='err'?'<i class="fas fa-xmark"></i>':type==='load'?'<i class="fas fa-spinner fa-spin"></i>':'<i class="fas fa-copy"></i>')+' '+msg;
+  requestAnimationFrame(()=>el.classList.add('show'));
+  clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),4000);
+}
+
+/* ── GitHub API fetch ── */
+async function fetchRepo(){
+  const raw = document.getElementById('aUrl').value.trim();
+  if(!raw){ toast('err','Enter a GitHub repo URL first.'); return; }
+
+  // parse owner/repo from URL
+  const m = raw.match(/github\.com\/([^\/]+)\/([^\/\?#]+)/);
+  if(!m){ toast('err','Not a valid GitHub URL.'); return; }
+  const [,owner,repo] = m;
+  const cleanUrl = 'https://github.com/'+owner+'/'+repo;
+
+  if(projects.some(p=>p.url.toLowerCase()===cleanUrl.toLowerCase())){
+    toast('err','This repo already exists in the list.');
+    return;
+  }
+
+  const btn = document.getElementById('fetchBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching...';
+  toast('load','Fetching repo info from GitHub...');
+
+  try {
+    const res = await fetch('https://api.github.com/repos/'+owner+'/'+repo);
+    if(!res.ok) throw new Error('Repo not found or private ('+res.status+')');
+    const data = await res.json();
+
+    // build tag from language + topics
+    let tag = data.language || '';
+    if(data.topics && data.topics.length){
+      const extra = data.topics.slice(0,2).join(' / ');
+      tag = tag ? tag+' / '+extra : extra;
+    }
+    if(!tag) tag = 'GitHub';
+
+    // pretty name: replace dashes/underscores with spaces, Title Case
+    const prettyName = (data.name||repo).replace(/[-_]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+
+    pendingProject = {
+      id: 'm_'+Date.now(),
+      name: prettyName,
+      desc: data.description || '',
+      url:  cleanUrl,
+      tag:  tag,
+      stars: data.stargazers_count || 0
+    };
+
+    showPreview(pendingProject);
+    document.getElementById('addBtn').disabled = false;
+    document.getElementById('addBtn').style.opacity = '1';
+    document.getElementById('addBtn').style.cursor = 'pointer';
+    toast('ok','Info fetched! Edit if needed, then click Add Project.');
+
+  } catch(e){
+    toast('err', e.message || 'Failed to fetch. Check the URL.');
+    pendingProject = null;
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Auto Fill';
+  }
+}
+
+function showPreview(p){
+  const card = document.getElementById('previewCard');
+  card.style.display = 'block';
+  card.innerHTML = `
+    <div class="preview-card">
+      <div class="pc-name" id="pName">${esc(p.name)}</div>
+      <div class="pc-desc">${esc(p.desc)||'<em style="opacity:.5">No description</em>'}</div>
+      <div class="pc-meta">
+        <span class="pc-tag" id="pTag">${esc(p.tag)}</span>
+        ${p.stars?'<span class="pc-stars"><i class="fas fa-star" style="font-size:9px"></i> '+p.stars+'</span>':''}
+      </div>
+      <div class="pc-edit">
+        <input id="editName" value="${esc(p.name)}" placeholder="Name" oninput="pendingProject.name=this.value;document.getElementById('pName').textContent=this.value">
+        <input id="editTag" value="${esc(p.tag)}" placeholder="Tag / Language" oninput="pendingProject.tag=this.value;document.getElementById('pTag').textContent=this.value">
+      </div>
+      <div class="pc-edit" style="margin-top:6px">
+        <input id="editDesc" value="${esc(p.desc)}" placeholder="Description (optional)" oninput="pendingProject.desc=this.value" style="flex:1">
+      </div>
+    </div>`;
+}
+
+function addProject(){
+  if(!pendingProject){ toast('err','Fetch a repo first.'); return; }
+  // refresh editable fields
+  const n = document.getElementById('editName');
+  const t = document.getElementById('editTag');
+  const d = document.getElementById('editDesc');
+  if(n) pendingProject.name = n.value.trim();
+  if(t) pendingProject.tag  = t.value.trim();
+  if(d) pendingProject.desc = d.value.trim();
+
+  if(!pendingProject.name){ toast('err','Name is required.'); return; }
+
+  projects.unshift(pendingProject);
+  renderPublic(); renderAdmin();
+  toast('ok','"'+pendingProject.name+'" added. Press Copy Code then upload to GitHub.');
+  clearForm();
+}
+
+function clearForm(){
+  document.getElementById('aUrl').value = '';
+  document.getElementById('previewCard').style.display = 'none';
+  document.getElementById('previewCard').innerHTML = '';
+  document.getElementById('addBtn').disabled = true;
+  document.getElementById('addBtn').style.opacity = '.4';
+  document.getElementById('addBtn').style.cursor = 'not-allowed';
+  pendingProject = null;
+}
+
+function delProject(id){
+  projects=projects.filter(p=>p.id!==id);
+  renderPublic(); renderAdmin();
+  toast('ok','Removed. Press Copy Code then upload to GitHub.');
+}
+
+function renderPublic(){
+  const list=document.getElementById('projectList');
+  list.innerHTML='';
+  projects.forEach(p=>{
+    const a=document.createElement('a');
+    a.href=p.url; a.target='_blank'; a.className='project-row';
+    a.innerHTML='<div class="proj-left"><div class="proj-name">'+esc(p.name)+'</div><div class="proj-desc">'+esc(p.desc||'No description')+'</div></div><div class="proj-right">'+(p.tag?'<span class="proj-tag">'+esc(p.tag)+'</span>':'')+'<i class="fas fa-arrow-up-right proj-arrow"></i></div>';
+    list.appendChild(a);
+  });
+  document.getElementById('repoCount').textContent=projects.length;
+}
+
+function renderAdmin(){
+  const list=document.getElementById('adminList');
+  list.innerHTML='';
+  const manual=projects.filter(p=>p.id.startsWith('m_')).length;
+  document.getElementById('aTotal').textContent=projects.length;
+  document.getElementById('aNew').textContent=manual;
+  document.getElementById('aDef').textContent=projects.length-manual;
+  projects.forEach(p=>{
+    const isNew=p.id.startsWith('m_');
+    const row=document.createElement('div');
+    row.className='adm-row';
+    row.innerHTML='<div class="dot '+(isNew?'n':'d')+'" title="'+(isNew?'Added by you':'Default')+'"></div><div class="adm-info"><div class="adm-pname">'+esc(p.name)+'</div><div class="adm-purl">'+esc(p.url)+'</div></div>'+(p.tag?'<span class="adm-tag">'+esc(p.tag)+'</span>':'')+'<button class="adm-del" onclick="delProject(\''+p.id+'\')"><i class="fas fa-trash-can"></i></button>';
+    list.appendChild(row);
+  });
+}
+
+function copyCode(){
+  const lines=projects.map(p=>{
+    const s=v=>String(v||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    return "  { id:'"+s(p.id)+"', name:'"+s(p.name)+"', desc:'"+s(p.desc)+"', url:'"+s(p.url)+"', tag:'"+s(p.tag)+"' },";
+  });
+  const code="const PROJECTS = [\n"+lines.join('\n')+"\n];";
+  navigator.clipboard.writeText(code)
+    .then(()=>toast('inf','Copied! Open index.html, find "const PROJECTS", replace the whole block, save, upload to GitHub.'))
+    .catch(()=>prompt('Copy this and replace the PROJECTS array in index.html:',code));
+}
+
+let clicks=0,clickT;
+document.getElementById('avatarWrap').addEventListener('click',()=>{
+  clicks++;
+  clearTimeout(clickT);
+  if(clicks>=3){openAdmin();clicks=0;return;}
+  clickT=setTimeout(()=>{clicks=0;},700);
+});
+
+function openAdmin(){
+  document.getElementById('adminOverlay').classList.add('open');
+  renderAdmin();
+  setTimeout(()=>document.getElementById('aUrl').focus(),300);
+}
+function closeAdmin(){
+  document.getElementById('adminOverlay').classList.remove('open');
+}
+document.getElementById('adminOverlay').addEventListener('click',e=>{
+  if(e.target===document.getElementById('adminOverlay'))closeAdmin();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAdmin();});
+document.getElementById('aUrl').addEventListener('keydown',e=>{if(e.key==='Enter')fetchRepo();});
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    const el=entry.target,target=+el.dataset.count;let n=0;
+    const t=setInterval(()=>{n=Math.min(n+Math.ceil(target/30),target);el.textContent=n;if(n>=target)clearInterval(t);},35);
+    io.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(c=>io.observe(c));
+
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.onkeydown=e=>{if(e.keyCode===123||(e.ctrlKey&&e.shiftKey&&['I','C','J'].includes(String.fromCharCode(e.keyCode)))||(e.ctrlKey&&e.keyCode===85))return false;};
+
+renderPublic();
+</script>
 </body>
 </html>
