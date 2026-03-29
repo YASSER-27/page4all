@@ -65,76 +65,10 @@ footer{border-top:1px solid var(--border);padding:30px 0 48px;display:flex;align
 .footer-links a{font-size:12px;color:var(--text-dim);text-decoration:none;transition:color .15s}
 .footer-links a:hover{color:var(--text)}
 
-/* ADMIN OVERLAY */
-#adminOverlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.88);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:16px}
-#adminOverlay.open{display:flex;animation:fadeOv .2s ease}
-@keyframes fadeOv{from{opacity:0}to{opacity:1}}
-.admin-box{background:#0a0a0d;border:1px solid rgba(112,66,248,.35);border-radius:20px;width:100%;max-width:600px;max-height:92vh;overflow-y:auto;box-shadow:0 0 100px rgba(112,66,248,.18);animation:boxUp .28s cubic-bezier(.34,1.56,.64,1)}
-@keyframes boxUp{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
-.adm-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#0a0a0d;z-index:1;border-radius:20px 20px 0 0}
-.adm-title{display:flex;align-items:center;gap:9px}
-.adm-pill{font-size:9px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.14em;background:rgba(112,66,248,.12);color:var(--purple);border:1px solid rgba(112,66,248,.28);padding:4px 10px;border-radius:20px}
-.adm-title h2{font-size:14.5px;font-weight:600;letter-spacing:-.03em}
-.adm-close{background:none;border:1px solid var(--border);border-radius:8px;color:var(--text-dim);font-size:13px;cursor:pointer;padding:7px 10px;transition:all .2s}
-.adm-close:hover{border-color:rgba(255,77,77,.4);color:var(--red);background:rgba(255,77,77,.08)}
-.adm-body{padding:20px 22px 24px}
-.adm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
-.adm-stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
-.adm-sn{font-size:20px;font-weight:600;font-family:var(--mono);letter-spacing:-.04em;background:linear-gradient(135deg,#fff,rgba(112,66,248,.85));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:2px}
-.adm-sl{font-size:10px;color:var(--text-dim)}
-.copy-btn{width:100%;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.22);border-radius:10px;padding:11px;color:#4ade80;font-family:var(--mono);font-size:11.5px;font-weight:500;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:22px}
-.copy-btn:hover{background:rgba(34,197,94,.16);box-shadow:0 0 20px rgba(34,197,94,.12)}
-.adm-lbl{display:block;font-size:10px;font-family:var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:.11em;margin-bottom:6px}
-.adm-lbl .r{color:var(--purple)}
-
-/* URL INPUT ROW */
-.url-row{display:flex;gap:8px;align-items:stretch;margin-bottom:12px}
-.url-row .adm-inp{margin-bottom:0;flex:1}
-.fetch-btn{background:linear-gradient(135deg,var(--purple),#9060ff);border:none;border-radius:9px;padding:0 16px;color:#fff;font-family:var(--mono);font-size:11px;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(112,66,248,.28);flex-shrink:0}
-.fetch-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(112,66,248,.42)}
-.fetch-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-
-/* PREVIEW CARD */
-.preview-card{background:rgba(112,66,248,0.06);border:1px solid rgba(112,66,248,0.2);border-radius:12px;padding:14px 16px;margin-bottom:14px;animation:fadeOv .25s ease}
-.preview-card .pc-name{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px}
-.preview-card .pc-desc{font-size:12px;color:var(--text-dim);margin-bottom:8px;line-height:1.5}
-.preview-card .pc-meta{display:flex;gap:8px;flex-wrap:wrap}
-.preview-card .pc-tag{font-size:10px;font-family:var(--mono);background:rgba(112,66,248,0.15);color:rgba(112,66,248,0.9);padding:3px 9px;border-radius:5px;border:1px solid rgba(112,66,248,0.25)}
-.preview-card .pc-stars{font-size:10px;font-family:var(--mono);color:rgba(255,200,0,0.8);display:flex;align-items:center;gap:4px}
-.preview-card .pc-edit{margin-top:10px;display:flex;gap:8px}
-.preview-card .pc-edit input{flex:1;background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:7px;padding:7px 10px;color:var(--text);font-family:var(--mono);font-size:11.5px;outline:none;transition:border-color .2s;user-select:text}
-.preview-card .pc-edit input:focus{border-color:rgba(112,66,248,.5)}
-
-.adm-inp{width:100%;background:rgba(0,0,0,.45);border:1px solid var(--border);border-radius:9px;padding:10px 13px;color:var(--text);font-family:var(--mono);font-size:12.5px;outline:none;transition:border-color .2s,box-shadow .2s;user-select:text;margin-bottom:12px}
-.adm-inp::placeholder{color:rgba(255,255,255,.16)}
-.adm-inp:focus{border-color:rgba(112,66,248,.5);box-shadow:0 0 0 3px rgba(112,66,248,.07)}
-.adm-acts{display:flex;gap:8px;justify-content:flex-end;margin-top:4px;padding-top:16px;border-top:1px solid var(--border)}
-.adm-clr{background:none;border:1px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text-dim);font-family:var(--mono);font-size:11px;cursor:pointer;transition:all .2s}
-.adm-clr:hover{border-color:rgba(255,77,77,.35);color:var(--red);background:rgba(255,77,77,.06)}
-.adm-add{background:linear-gradient(135deg,var(--purple),#9060ff);border:none;border-radius:8px;padding:9px 18px;color:#fff;font-family:var(--mono);font-size:11.5px;font-weight:500;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:7px;box-shadow:0 4px 14px rgba(112,66,248,.28)}
-.adm-add:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(112,66,248,.42)}
-.adm-div{font-size:10px;font-family:var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:.13em;margin:20px 0 12px;display:flex;align-items:center;gap:8px}
-.adm-div::after{content:'';flex:1;height:1px;background:var(--border)}
-.adm-row{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);gap:10px}
-.adm-row:first-child{border-top:1px solid var(--border)}
-.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.dot.n{background:var(--green);box-shadow:0 0 6px rgba(34,197,94,.5)}
-.dot.d{background:rgba(255,255,255,.18)}
-.adm-info{flex:1;min-width:0}
-.adm-pname{font-size:13px;font-weight:500;color:var(--text-mid);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:1px}
-.adm-purl{font-size:10.5px;font-family:var(--mono);color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.adm-tag{font-size:9.5px;font-family:var(--mono);background:rgba(112,66,248,.1);color:rgba(112,66,248,.8);padding:2px 7px;border-radius:4px;border:1px solid rgba(112,66,248,.2);white-space:nowrap;flex-shrink:0}
-.adm-del{background:none;border:1px solid transparent;border-radius:6px;color:rgba(255,77,77,.3);font-size:11px;cursor:pointer;padding:5px 7px;transition:all .2s;flex-shrink:0}
-.adm-del:hover{color:var(--red);background:rgba(255,77,77,.1);border-color:rgba(255,77,77,.25)}
-.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(70px);font-size:12px;font-family:var(--mono);padding:10px 18px;border-radius:10px;display:flex;align-items:center;gap:8px;z-index:2000;pointer-events:none;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .25s;opacity:0;white-space:nowrap}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-.toast.ok{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.25)}
-.toast.err{background:rgba(255,77,77,.15);color:#ff6b6b;border:1px solid rgba(255,77,77,.25)}
-.toast.inf{background:rgba(112,66,248,.15);color:#a78bfa;border:1px solid rgba(112,66,248,.25)}
-.toast.load{background:rgba(255,200,0,.1);color:#fbbf24;border:1px solid rgba(255,200,0,.2)}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--purple);border-radius:10px}
 @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:520px){h1{font-size:22px}.stats-row{grid-template-columns:repeat(2,1fr)}.proj-tag,.nav-links{display:none}footer{flex-direction:column;gap:12px}.adm-stats{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){h1{font-size:22px}.stats-row{grid-template-columns:repeat(2,1fr)}.proj-tag,.nav-links{display:none}footer{flex-direction:column;gap:12px}}
+
 </style>
 </head>
 <body>
@@ -184,323 +118,77 @@ footer{border-top:1px solid var(--border);padding:30px 0 48px;display:flex;align
   </footer>
 </div>
 
-<!-- ADMIN OVERLAY -->
-<div id="adminOverlay">
-  <div class="admin-box">
-    <div class="adm-head">
-      <div class="adm-title">
-        <span class="adm-pill"><i class="fas fa-lock" style="margin-right:4px;font-size:8px"></i>Admin</span>
-        <h2>Project Manager</h2>
-      </div>
-      <button class="adm-close" onclick="closeAdmin()"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="adm-body">
-      <div class="adm-stats">
-        <div class="adm-stat"><div class="adm-sn" id="aTotal">0</div><div class="adm-sl">Total</div></div>
-        <div class="adm-stat"><div class="adm-sn" id="aNew">0</div><div class="adm-sl">Added</div></div>
-        <div class="adm-stat"><div class="adm-sn" id="aDef">0</div><div class="adm-sl">Default</div></div>
-      </div>
-      <div style="display:flex;gap:8px;margin-bottom:22px">
-        <button class="copy-btn" onclick="copyCode()" style="flex:1;margin-bottom:0">
-          <i class="fas fa-code"></i> Copy Code → GitHub backup
-        </button>
-        <button onclick="resetStorage()" style="background:rgba(255,77,77,.07);border:1px solid rgba(255,77,77,.22);border-radius:10px;padding:11px 14px;color:#ff6b6b;font-family:var(--mono);font-size:11px;cursor:pointer;transition:all .2s;white-space:nowrap" title="Clear saved data and reset to defaults">
-          <i class="fas fa-trash"></i> Reset
-        </button>
-      </div>
 
-      <!-- NEW: URL-first smart input -->
-      <label class="adm-lbl">GitHub URL <span class="r">*</span></label>
-      <div class="url-row">
-        <input class="adm-inp" id="aUrl" type="text" placeholder="https://github.com/YASSER-27/my-repo" autocomplete="off" spellcheck="false">
-        <button class="fetch-btn" id="fetchBtn" onclick="fetchRepo()">
-          <i class="fas fa-wand-magic-sparkles"></i> Auto Fill
-        </button>
-      </div>
-
-      <!-- PREVIEW CARD — shown after fetch -->
-      <div id="previewCard" style="display:none"></div>
-
-      <div class="adm-acts">
-        <button class="adm-clr" onclick="clearForm()"><i class="fas fa-rotate-left" style="margin-right:5px"></i>Clear</button>
-        <button class="adm-add" id="addBtn" onclick="addProject()" disabled style="opacity:.4;cursor:not-allowed"><i class="fas fa-plus"></i> Add Project</button>
-      </div>
-      <div class="adm-div" style="margin-top:24px">All Projects</div>
-      <div id="adminList"></div>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
 
 <script>
 /* ================================================
-   PROJECTS DATA
+   PROJECTS DATA — يتم تعديلها عبر project_manager.py
 ================================================ */
 const PROJECTS = [
-  { id:'d0',  name:'Note Studio AI',         desc:'AI-powered note taking and writing assistant',            url:'https://github.com/YASSER-27/Note-Studio-Ai',                   tag:'Python / AI' },
-  { id:'d1',  name:'NoteAI Studio',          desc:'Smart note editor with integrated AI capabilities',        url:'https://github.com/YASSER-27/Note-Studio',                      tag:'Python' },
-  { id:'d2',  name:'LLMs',                   desc:'Experiments and tools for running large language models',  url:'https://github.com/YASSER-27/LLMs',                             tag:'Python / LLM' },
-  { id:'d3',  name:'GGUF Model Engine',       desc:'Run GGUF quantized models with minimal setup',            url:'https://github.com/YASSER-27/easy-run-gguf-model',             tag:'llama.cpp' },
-  { id:'d4',  name:'AI Server LLM',          desc:'Local LLM server accessible on PC and Android',           url:'https://github.com/YASSER-27/Ai-Server-LLM-Pc-and-Android',   tag:'Python / Android' },
-  { id:'d5',  name:'AI Image Creator',       desc:'Generate images locally using open-source models',         url:'https://github.com/YASSER-27/Ai-Image-creator',                tag:'Python / AI' },
-  { id:'d6',  name:'Mobile AI Generator',    desc:'Run AI image generation directly on Android',              url:'https://github.com/YASSER-27/Creat-Ai-image-on-phone',         tag:'Android / AI' },
-  { id:'d7',  name:'README Builder',         desc:'Generate professional README files for your repos',        url:'https://github.com/YASSER-27/README-Builder',                  tag:'Tool' },
-  { id:'d8',  name:'Git Uploader',           desc:'Streamlined tool for pushing files to GitHub',             url:'https://github.com/YASSER-27/Git-Uploader',                    tag:'Git / CLI' },
-  { id:'d9',  name:'Find Icon',              desc:'Search and browse icons quickly from your desktop',        url:'https://github.com/YASSER-27/Find-Icon',                       tag:'Utility' },
-  { id:'d10', name:'Icon Maker',             desc:'Create and export custom icons with ease',                 url:'https://github.com/YASSER-27/Icon-Maker',                      tag:'Design' },
-  { id:'d11', name:'Smart Capture',          desc:'Intelligent screenshot and screen capture utility',        url:'https://github.com/YASSER-27/Smart-Capture',                   tag:'Utility' },
-  { id:'d12', name:'Empire Capture',         desc:'Advanced capture tool with extended feature set',          url:'https://github.com/YASSER-27/Empire-Capture',                  tag:'Utility' },
-  { id:'d13', name:'Paste Image Downloader', desc:'Paste a clipboard image and instantly save to disk',       url:'https://github.com/YASSER-27/Paste-Image-to-Download-final',  tag:'Utility' },
-  { id:'d14', name:'Fast Scan Folder',       desc:'High-speed directory scanning and file analysis',          url:'https://github.com/YASSER-27/Fast-Scan-Folder',                tag:'System' },
-  { id:'d15', name:'WiFi Password Tool',     desc:'Reveal saved WiFi passwords stored on your system',        url:'https://github.com/YASSER-27/wlan-show-key',                   tag:'System' },
-  { id:'d16', name:'YouTube HD Downloader',  desc:'Download YouTube videos in highest available quality',     url:'https://github.com/YASSER-27/youtube-hd-video-download',      tag:'Python' },
-  { id:'d17', name:'Picture-in-Picture',     desc:'Chrome extension for floating video overlay anywhere',     url:'https://github.com/YASSER-27/Picture-in-Picture-google_chrome',tag:'Extension' },
-  { id:'d18', name:'Home Movie Server',      desc:'Self-hosted local media server for your home network',     url:'https://github.com/YASSER-27/Home-move-server',                tag:'Server' },
-  { id:'d19', name:'Jump Game',              desc:'Browser-based HTML5 platformer with no dependencies',      url:'https://github.com/YASSER-27/jump_game_html',                  tag:'HTML5 / JS' },
-  { id:'d20', name:'Paste Image (v1)',        desc:'Original version of the clipboard-to-file download tool', url:'https://github.com/YASSER-27/Paste-Image-to-Download',         tag:'Utility' },
+  { id:'bulk_1112657289_1774742357898', name:'Page4All', desc:'this is my page html welecom all', url:'https://github.com/YASSER-27/page4all', tag:'HTML' },
+  { id:'bulk_1192792429_1774742357898', name:'Auto Hen Ps3', desc:'hen ps3 from android', url:'https://github.com/YASSER-27/auto-hen-ps3', tag:'HTML / jailbreak / jailbreak-ps3' },
+  { id:'bulk_1185385614_1774742357898', name:'Color Picker', desc:'colox', url:'https://github.com/YASSER-27/color-picker', tag:'Python / color / color-picker' },
+  { id:'bulk_1174866908_1774742357898', name:'Yasser 27', desc:'', url:'https://github.com/YASSER-27/YASSER-27', tag:'GitHub' },
+  { id:'bulk_1126003883_1774742357898', name:'Home Move Server', desc:'make your home movies now and watch from all phone-tv-pc', url:'https://github.com/YASSER-27/Home-move-server', tag:'HTML / movies-streaming / netflix' },
+  { id:'bulk_1147547377_1774742357898', name:'Readme Builder', desc:'README Builder Gui', url:'https://github.com/YASSER-27/README-Builder', tag:'Python / github / make-readme' },
+  { id:'bulk_1176178303_1774742357898', name:'Readme Lite', desc:'Readme Lite better than original readme editor (open Source )', url:'https://github.com/YASSER-27/Readme_Lite', tag:'Python / readme / readme-builder' },
+  { id:'bulk_1176965211_1774742357898', name:'Live Wallpaper Desktop', desc:'Make desktop  Screen Come Alive with LIve Wallpaper Desktop', url:'https://github.com/YASSER-27/LIve-Wallpaper-Desktop', tag:'JavaScript / live-wallpaper / live-wallpaper-anime' },
+  { id:'bulk_1175395100_1774742357898', name:'Dw Downloader', desc:'download youtube video and any video you want from any site ', url:'https://github.com/YASSER-27/dw-downloader', tag:'Python' },
+  { id:'bulk_1173089713_1774742357898', name:'Code Auditor', desc:'The Judge forensic code auditing tool designed to detect logic plagiarism', url:'https://github.com/YASSER-27/code-auditor', tag:'TypeScript / artificial-intelligence-algorithms / code-analysis' },
+  { id:'bulk_1172097869_1774742357898', name:'Opendoor', desc:'AI coding assistant with a C++ core,', url:'https://github.com/YASSER-27/opendoor', tag:'Python / agnet / agnets' },
+  { id:'bulk_1171158945_1774742357898', name:'Readme Architect', desc:'README Architect is a specialized Markdown workspace for building high‑quality README.md', url:'https://github.com/YASSER-27/README-Architect', tag:'TypeScript / readme / readme-edits' },
+  { id:'bulk_1140842103_1774742357898', name:'Icon Maker', desc:'اصنع ايقونتك الان بسرعة ', url:'https://github.com/YASSER-27/Icon-Maker', tag:'TypeScript / design-icons / icon' },
+  { id:'bulk_1170211673_1774742357898', name:'Gamanote', desc:'desktop IDE and note-taking application', url:'https://github.com/YASSER-27/gamanote', tag:'JavaScript / ai-agent / antigravity' },
+  { id:'bulk_1167866487_1774742357898', name:'Chrome Pin', desc:'Chrome Pin is a tool that pins Chrome windows above all other apps.', url:'https://github.com/YASSER-27/Chrome-Pin', tag:'Python / always-on-top / always-on-top-app' },
+  { id:'bulk_1134963900_1774742357898', name:'Empire Capture', desc:'high-performance, Record screen and window recording', url:'https://github.com/YASSER-27/Empire-Capture', tag:'rec / record-video' },
+  { id:'bulk_1163065785_1774742357898', name:'Quran Offline Pc', desc:'القران الكريم صوت وكتابة وتفسيرا مفتوح المصدر للجميع', url:'https://github.com/YASSER-27/Quran-Offline-Pc', tag:'Python / moshaf / quran' },
+  { id:'bulk_1134989384_1774742357898', name:'Note Studio Ai', desc:'Note Studio AI is a lightweight, high-performance Code Editor (IDE) built for developers who prioritize privacy and local AI capabilities', url:'https://github.com/YASSER-27/Note-Studio-Ai', tag:'JavaScript / ai-chat / ai-local' },
+  { id:'bulk_1145397358_1774742357898', name:'Short Video Style', desc:'watch all your video like youtube and tiktok video but with your video', url:'https://github.com/YASSER-27/Short-Video-Style', tag:'GitHub' },
+  { id:'bulk_1131663454_1774742357899', name:'Llms', desc:'A high-performance, cross-platform desktop application for chatting with Large Language Models', url:'https://github.com/YASSER-27/LLMs', tag:'ai / ggml' },
+  { id:'bulk_1132426287_1774742357899', name:'Note Studio', desc:'native desktop applications to provide a seamless coding experience.', url:'https://github.com/YASSER-27/Note-Studio', tag:'JavaScript / ai-notes / note' },
+  { id:'bulk_1132247328_1774742357899', name:'Smart Capture', desc:'Smart Capture: Easily capture specific windows or the entire screen', url:'https://github.com/YASSER-27/Smart-Capture', tag:'capture / capture-screen' },
+  { id:'bulk_1129905802_1774742357899', name:'Fast Scan Folder', desc:'show all your folder from one click and export report png or text', url:'https://github.com/YASSER-27/Fast-Scan-Folder', tag:'Python' },
+  { id:'bulk_1122988158_1774742357899', name:'Ai Server Llm Pc And Android', desc:'run llamacpp from your pc and your android too', url:'https://github.com/YASSER-27/Ai-Server-LLM-Pc-and-Android', tag:'Kotlin / kotlin / kotlin-android' },
+  { id:'bulk_1113016751_1774742357899', name:'Creat Ai Image On Phone', desc:'app generator image for free ', url:'https://github.com/YASSER-27/Creat-Ai-image-on-phone', tag:'Kotlin / apk / free-generator-image' },
+  { id:'bulk_1123898088_1774742357899', name:'Paste Image To Download', desc:'download your save image fast also can you download image from your clipboard ', url:'https://github.com/YASSER-27/Paste-Image-to-Download', tag:'Python' },
+  { id:'bulk_1126908865_1774742357899', name:'Easy Run Gguf Model', desc:'i use llama cpp for build this app enjoy', url:'https://github.com/YASSER-27/easy-run-gguf-model', tag:'gguf / gguf-models' },
+  { id:'bulk_1122959483_1774742357899', name:'Wlan Show Key', desc:'', url:'https://github.com/YASSER-27/wlan-show-key', tag:'Python' },
+  { id:'bulk_1112978676_1774742357899', name:'Git Uploader', desc:'esay Git Uploader and fast', url:'https://github.com/YASSER-27/Git-Uploader', tag:'Python / esay-github / git-send' },
+  { id:'bulk_1112645949_1774742357899', name:'Ai Image Creator', desc:'creat your image with this program esay and fast (if have good internet) program can creat 4 image', url:'https://github.com/YASSER-27/Ai-Image-creator', tag:'Python' },
+  { id:'bulk_1112633748_1774742357899', name:'Youtube Hd Video Download', desc:'download any video you want', url:'https://github.com/YASSER-27/youtube-hd-video-download', tag:'Python / ffmpeg / video-download' },
+  { id:'bulk_1123901428_1774742357899', name:'Picture In Picture Google Chrome', desc:'Picture-in-Picture for youtube and more site', url:'https://github.com/YASSER-27/Picture-in-Picture-google_chrome', tag:'JavaScript / google-chrome / google-chrome-extension' },
+  { id:'bulk_1114023567_1774742357899', name:'Jump Game Html', desc:'small game jume html css js', url:'https://github.com/YASSER-27/jump_game_html', tag:'JavaScript' },
+  { id:'bulk_1126931722_1774742357899', name:'Paste Image To Download Final', desc:'past your image from clipborad or just cntr+v also you can now take screenshot to your program esay and fast', url:'https://github.com/YASSER-27/Paste-Image-to-Download-final', tag:'clipboard / clipboard-paste' },
 ];
 /* ============================================== */
-
-const LS_KEY = 'yasser27_projects';
-
-function saveToStorage(list){
-  try{ localStorage.setItem(LS_KEY, JSON.stringify(list)); }catch(e){}
-}
-
-function loadFromStorage(){
-  try{
-    const raw = localStorage.getItem(LS_KEY);
-    if(raw){
-      const saved = JSON.parse(raw);
-      if(Array.isArray(saved) && saved.length) return saved;
-    }
-  }catch(e){}
-  return null;
-}
-
-// Merge: saved list wins, but keep any default projects not already present
-function mergeWithDefaults(saved){
-  const savedUrls = new Set(saved.map(p=>p.url.toLowerCase()));
-  const missing = PROJECTS.filter(p=>!savedUrls.has(p.url.toLowerCase()));
-  return [...saved, ...missing];
-}
-
-const _saved = loadFromStorage();
-let projects = _saved ? mergeWithDefaults(_saved) : PROJECTS.map(p=>({...p}));
-let pendingProject = null;
 
 document.getElementById('yr').textContent = new Date().getFullYear();
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-let toastT;
-function toast(type,msg){
-  const el=document.getElementById('toast');
-  el.className='toast '+type;
-  el.innerHTML=(type==='ok'?'<i class="fas fa-check"></i>':type==='err'?'<i class="fas fa-xmark"></i>':type==='load'?'<i class="fas fa-spinner fa-spin"></i>':'<i class="fas fa-copy"></i>')+' '+msg;
-  requestAnimationFrame(()=>el.classList.add('show'));
-  clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),4000);
-}
-
-/* ── GitHub API fetch ── */
-async function fetchRepo(){
-  const raw = document.getElementById('aUrl').value.trim();
-  if(!raw){ toast('err','Enter a GitHub repo URL first.'); return; }
-
-  // parse owner/repo from URL
-  const m = raw.match(/github\.com\/([^\/]+)\/([^\/\?#]+)/);
-  if(!m){ toast('err','Not a valid GitHub URL.'); return; }
-  const [,owner,repo] = m;
-  const cleanUrl = 'https://github.com/'+owner+'/'+repo;
-
-  if(projects.some(p=>p.url.toLowerCase()===cleanUrl.toLowerCase())){
-    toast('err','This repo already exists in the list.');
-    return;
-  }
-
-  const btn = document.getElementById('fetchBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching...';
-  toast('load','Fetching repo info from GitHub...');
-
-  try {
-    const res = await fetch('https://api.github.com/repos/'+owner+'/'+repo);
-    if(!res.ok) throw new Error('Repo not found or private ('+res.status+')');
-    const data = await res.json();
-
-    // build tag from language + topics
-    let tag = data.language || '';
-    if(data.topics && data.topics.length){
-      const extra = data.topics.slice(0,2).join(' / ');
-      tag = tag ? tag+' / '+extra : extra;
-    }
-    if(!tag) tag = 'GitHub';
-
-    // pretty name: replace dashes/underscores with spaces, Title Case
-    const prettyName = (data.name||repo).replace(/[-_]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-
-    pendingProject = {
-      id: 'm_'+Date.now(),
-      name: prettyName,
-      desc: data.description || '',
-      url:  cleanUrl,
-      tag:  tag,
-      stars: data.stargazers_count || 0
-    };
-
-    showPreview(pendingProject);
-    document.getElementById('addBtn').disabled = false;
-    document.getElementById('addBtn').style.opacity = '1';
-    document.getElementById('addBtn').style.cursor = 'pointer';
-    toast('ok','Info fetched! Edit if needed, then click Add Project.');
-
-  } catch(e){
-    toast('err', e.message || 'Failed to fetch. Check the URL.');
-    pendingProject = null;
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Auto Fill';
-  }
-}
-
-function showPreview(p){
-  const card = document.getElementById('previewCard');
-  card.style.display = 'block';
-  card.innerHTML = `
-    <div class="preview-card">
-      <div class="pc-name" id="pName">${esc(p.name)}</div>
-      <div class="pc-desc">${esc(p.desc)||'<em style="opacity:.5">No description</em>'}</div>
-      <div class="pc-meta">
-        <span class="pc-tag" id="pTag">${esc(p.tag)}</span>
-        ${p.stars?'<span class="pc-stars"><i class="fas fa-star" style="font-size:9px"></i> '+p.stars+'</span>':''}
-      </div>
-      <div class="pc-edit">
-        <input id="editName" value="${esc(p.name)}" placeholder="Name" oninput="pendingProject.name=this.value;document.getElementById('pName').textContent=this.value">
-        <input id="editTag" value="${esc(p.tag)}" placeholder="Tag / Language" oninput="pendingProject.tag=this.value;document.getElementById('pTag').textContent=this.value">
-      </div>
-      <div class="pc-edit" style="margin-top:6px">
-        <input id="editDesc" value="${esc(p.desc)}" placeholder="Description (optional)" oninput="pendingProject.desc=this.value" style="flex:1">
-      </div>
-    </div>`;
-}
-
-function addProject(){
-  if(!pendingProject){ toast('err','Fetch a repo first.'); return; }
-  // refresh editable fields
-  const n = document.getElementById('editName');
-  const t = document.getElementById('editTag');
-  const d = document.getElementById('editDesc');
-  if(n) pendingProject.name = n.value.trim();
-  if(t) pendingProject.tag  = t.value.trim();
-  if(d) pendingProject.desc = d.value.trim();
-
-  if(!pendingProject.name){ toast('err','Name is required.'); return; }
-
-  projects.unshift(pendingProject);
-  saveToStorage(projects);
-  renderPublic(); renderAdmin();
-  toast('ok','"'+pendingProject.name+'" added! Saved automatically.');
-  clearForm();
-}
-
-function clearForm(){
-  document.getElementById('aUrl').value = '';
-  document.getElementById('previewCard').style.display = 'none';
-  document.getElementById('previewCard').innerHTML = '';
-  document.getElementById('addBtn').disabled = true;
-  document.getElementById('addBtn').style.opacity = '.4';
-  document.getElementById('addBtn').style.cursor = 'not-allowed';
-  pendingProject = null;
-}
-
-function delProject(id){
-  projects=projects.filter(p=>p.id!==id);
-  saveToStorage(projects);
-  renderPublic(); renderAdmin();
-  toast('ok','Removed and saved automatically.');
-}
-
 function renderPublic(){
-  const list=document.getElementById('projectList');
-  list.innerHTML='';
-  projects.forEach(p=>{
-    const a=document.createElement('a');
-    a.href=p.url; a.target='_blank'; a.className='project-row';
-    a.innerHTML='<div class="proj-left"><div class="proj-name">'+esc(p.name)+'</div><div class="proj-desc">'+esc(p.desc||'No description')+'</div></div><div class="proj-right">'+(p.tag?'<span class="proj-tag">'+esc(p.tag)+'</span>':'')+'<i class="fas fa-arrow-up-right proj-arrow"></i></div>';
+  const list = document.getElementById('projectList');
+  list.innerHTML = '';
+  PROJECTS.forEach(p => {
+    const a = document.createElement('a');
+    a.href = p.url; a.target = '_blank'; a.className = 'project-row';
+    a.innerHTML = '<div class="proj-left"><div class="proj-name">'+esc(p.name)+'</div><div class="proj-desc">'+esc(p.desc||'No description')+'</div></div><div class="proj-right">'+(p.tag?'<span class="proj-tag">'+esc(p.tag)+'</span>':'')+'<i class="fas fa-arrow-up-right proj-arrow"></i></div>';
     list.appendChild(a);
   });
-  document.getElementById('repoCount').textContent=projects.length;
+  document.getElementById('repoCount').textContent = PROJECTS.length;
 }
 
-function renderAdmin(){
-  const list=document.getElementById('adminList');
-  list.innerHTML='';
-  const manual=projects.filter(p=>p.id.startsWith('m_')).length;
-  document.getElementById('aTotal').textContent=projects.length;
-  document.getElementById('aNew').textContent=manual;
-  document.getElementById('aDef').textContent=projects.length-manual;
-  projects.forEach(p=>{
-    const isNew=p.id.startsWith('m_');
-    const row=document.createElement('div');
-    row.className='adm-row';
-    row.innerHTML='<div class="dot '+(isNew?'n':'d')+'" title="'+(isNew?'Added by you':'Default')+'"></div><div class="adm-info"><div class="adm-pname">'+esc(p.name)+'</div><div class="adm-purl">'+esc(p.url)+'</div></div>'+(p.tag?'<span class="adm-tag">'+esc(p.tag)+'</span>':'')+'<button class="adm-del" onclick="delProject(\''+p.id+'\')"><i class="fas fa-trash-can"></i></button>';
-    list.appendChild(row);
-  });
-}
-
-function resetStorage(){
-  if(!confirm('هل تريد حذف كل المشاريع المضافة والرجوع للافتراضية؟')) return;
-  localStorage.removeItem(LS_KEY);
-  projects = PROJECTS.map(p=>({...p}));
-  renderPublic(); renderAdmin();
-  toast('ok','تم الإعادة للافتراضية.');
-}
-
-function copyCode(){
-  const lines=projects.map(p=>{
-    const s=v=>String(v||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-    return "  { id:'"+s(p.id)+"', name:'"+s(p.name)+"', desc:'"+s(p.desc)+"', url:'"+s(p.url)+"', tag:'"+s(p.tag)+"' },";
-  });
-  const code="const PROJECTS = [\n"+lines.join('\n')+"\n];";
-  navigator.clipboard.writeText(code)
-    .then(()=>toast('inf','Copied! Open index.html, find "const PROJECTS", replace the whole block, save, upload to GitHub.'))
-    .catch(()=>prompt('Copy this and replace the PROJECTS array in index.html:',code));
-}
-
-let clicks=0,clickT;
-document.getElementById('avatarWrap').addEventListener('click',()=>{
-  clicks++;
-  clearTimeout(clickT);
-  if(clicks>=3){openAdmin();clicks=0;return;}
-  clickT=setTimeout(()=>{clicks=0;},700);
-});
-
-function openAdmin(){
-  document.getElementById('adminOverlay').classList.add('open');
-  renderAdmin();
-  setTimeout(()=>document.getElementById('aUrl').focus(),300);
-}
-function closeAdmin(){
-  document.getElementById('adminOverlay').classList.remove('open');
-}
-document.getElementById('adminOverlay').addEventListener('click',e=>{
-  if(e.target===document.getElementById('adminOverlay'))closeAdmin();
-});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAdmin();});
-document.getElementById('aUrl').addEventListener('keydown',e=>{if(e.key==='Enter')fetchRepo();});
-
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(!entry.isIntersecting)return;
-    const el=entry.target,target=+el.dataset.count;let n=0;
-    const t=setInterval(()=>{n=Math.min(n+Math.ceil(target/30),target);el.textContent=n;if(n>=target)clearInterval(t);},35);
+const io = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(!entry.isIntersecting) return;
+    const el = entry.target, target = +el.dataset.count; let n = 0;
+    const t = setInterval(() => { n = Math.min(n+Math.ceil(target/30), target); el.textContent = n; if(n>=target) clearInterval(t); }, 35);
     io.unobserve(el);
   });
-},{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(c=>io.observe(c));
+}, {threshold:.5});
+document.querySelectorAll('[data-count]').forEach(c => io.observe(c));
 
-document.addEventListener('contextmenu',e=>e.preventDefault());
-document.onkeydown=e=>{if(e.keyCode===123||(e.ctrlKey&&e.shiftKey&&['I','C','J'].includes(String.fromCharCode(e.keyCode)))||(e.ctrlKey&&e.keyCode===85))return false;};
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = e => { if(e.keyCode===123||(e.ctrlKey&&e.shiftKey&&['I','C','J'].includes(String.fromCharCode(e.keyCode)))||(e.ctrlKey&&e.keyCode===85)) return false; };
 
 renderPublic();
 </script>
